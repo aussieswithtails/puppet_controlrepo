@@ -117,6 +117,7 @@
     <orderEntry type="library" scope="PROVIDED" name="puppet-lint-classes_and_types_beginning_with_digits-check (v0.1.0, rbenv: 2.2.3) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="puppet-lint-empty_string-check (v0.2.1, rbenv: 2.2.3) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="puppet-lint-file_ensure-check (v0.2.1, rbenv: 2.2.3) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="puppet-lint-file_source_rights-check (v0.1.0, rbenv: 2.2.3) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="puppet-lint-fileserver-check (v1.2.1, rbenv: 2.2.3) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="puppet-lint-leading_zero-check (v0.1.0, rbenv: 2.2.3) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="puppet-lint-spaceship_operator_without_tag-check (v0.1.0, rbenv: 2.2.3) [gem]" level="application" />
@@ -150,6 +151,7 @@
     <orderEntry type="library" scope="PROVIDED" name="rspec-support (v3.1.2, rbenv: 2.2.3) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rspec-support (v3.4.1, rbenv: 2.2.3) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rsync (v1.0.9, rbenv: 2.2.3) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rubocop (v0.33.0, rbenv: 2.2.3) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ruby-progressbar (v1.7.5, rbenv: 2.2.3) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="serverspec (v2.29.1, rbenv: 2.2.3) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sfl (v2.2, rbenv: 2.2.3) [gem]" level="application" />
