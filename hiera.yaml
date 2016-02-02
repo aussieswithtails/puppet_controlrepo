@@ -2,7 +2,7 @@
 :backends:
   - yaml
 :hierarchy:
-  - common
+  - global
 
 :yaml:
     # datadir is empty here, so hiera uses its defaults:
