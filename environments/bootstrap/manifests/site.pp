@@ -3,8 +3,22 @@
 #http://docs.puppetlabs.com/pe/latest/release_notes.html#filebucket-resource-no-longer-created-by-default
 #File { backup => false }
 
-node /^puppetmaster/ {
+node /^test-puppetmaster/ {
     notify{'Install and configure a Puppetmaster':}
+  notify{ 'Installing & Configuring r10k': }
+
+
+  class { '::r10k':
+    version => '2.1.1',
+    sources => {
+      'puppet' => {
+        'remote'  => 'https://github.com/snesbittsea/puppet_controlrepo.git',
+        'basedir' => "${::settings::codedir}/environments",
+        'prefix'  => false,
+      },
+    },
+  }
+
 }
 # DEFAULT NODE
 # Node definitions in this file are merged with node data from the console. See
