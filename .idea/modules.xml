@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ntp.iml" filepath="$PROJECT_DIR$/ntp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bootstrap.iml" filepath="$PROJECT_DIR$/bootstrap.iml" />
     </modules>
   </component>
 </project>
