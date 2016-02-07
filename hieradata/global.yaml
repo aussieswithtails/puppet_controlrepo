@@ -19,7 +19,7 @@ ntp::interfaces:
 #   which nodes can connect
 ntp::restrict:
   - 'default kod nomodify notrap nopeer noquery'
-    '-4 default kod notrap nomodify nopeer noquery'
+  - '-4 default kod notrap nomodify nopeer noquery'
   - '-6 default kod nomodify notrap nopeer noquery'
   - '127.0.0.1'
   - '::1'
