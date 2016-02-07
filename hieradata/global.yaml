@@ -1,5 +1,5 @@
 ---
-message: "This node is using common data"
+message: "This node is using global data"
 
 #Puppet Server Tuning
 puppet_enterprise::master::puppetserver::jruby_max_requests_per_instance: 10000
@@ -11,3 +11,18 @@ puppet_enterprise::master::code_manager::authenticate_webhook: false
 #https://docs.puppetlabs.com/pe/latest/console_config.html#tuning-the-classifier-synchronization-period
 #disable classifier scheduled sync and rely on r10k postrun command to sync the classes
 puppet_enterprise::profile::console::classifier_synchronization_period: 0
+
+# Data for the puppetlabs NTP module
+#   which interfaces will accept connections
+ntp::interfaces:
+  - '127.0.0.1'
+#   which nodes can connect
+ntp::restrict:
+  - 'default kod nomodify notrap nopeer noquery'
+  - '-6 default kod nomodify notrap nopeer noquery'
+  - '127.0.0.1'
+  - '-6 ::1'
+  - '192.168.250.0/24'
+  - '-6 fe80::'
+ntp::servers:
+  - 'time01.samdom.aussieswithtails.fuzzbutt' # ToDo: use fqdn?
