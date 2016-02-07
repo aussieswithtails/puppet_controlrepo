@@ -14,8 +14,8 @@ puppet_enterprise::profile::console::classifier_synchronization_period: 0
 
 # Data for the puppetlabs NTP module
 #   which interfaces will accept connections
-ntp::interfaces:
-  - '127.0.0.1'
+#ntp::interfaces:
+#  - '127.0.0.1'
 #   which nodes can connect
 ntp::restrict:
   - 'default kod nomodify notrap nopeer noquery'
