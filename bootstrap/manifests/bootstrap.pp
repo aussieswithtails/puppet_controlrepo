@@ -5,17 +5,27 @@
 
 
 notify{'Configure an AWT Test Puppet System':}
+file {'autosign.conf':
+  ensure  => file,
+  path    => "${settings::confdir}/autosign.conf",
+  content => file('bootstrap/autosign.conf'),
+  mode    => '0644',
+}
 
-#  notify{ 'Installing & Configuring r10k': }
-#  class { '::r10k':
-#    version => '2.1.1',
-#    sources => {
-#      'puppet' => {
-#        'remote'  => 'https://github.com/snesbittsea/puppet_controlrepo.git',
-#        'basedir' => "${::settings::codedir}/environments",
-#        'prefix'  => false,
-#      },
-#    },
-#  }
+file {'puppet.conf':
+  ensure  => file,
+  path    => "${settings::confdir}/puppet.conf",
+  content => file('bootstrap/puppet.conf'),
+  mode    => '0644',
+}
+
+host { 'puppetmaster':
+  ip           => '10.0.2.15',
+  host_aliases => ['puppet', ],
+}
+
+service {'puppetserver':
+  ensure  => running,
+}
 
 
