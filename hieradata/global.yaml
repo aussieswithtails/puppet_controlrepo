@@ -14,15 +14,11 @@ puppet_enterprise::profile::console::classifier_synchronization_period: 0
 
 # Data for the puppetlabs NTP module
 #   which interfaces will accept connections
-ntp::interfaces:
-  - '127.0.0.1'
-#   which nodes can connect
 ntp::restrict:
   - 'default kod nomodify notrap nopeer noquery'
+  - '-4 default kod notrap nomodify nopeer noquery'
   - '-6 default kod nomodify notrap nopeer noquery'
   - '127.0.0.1'
-  - '-6 ::1'
-  - '192.168.250.0/24'
-  - '-6 fe80::'
+  - '::1'
 ntp::servers:
   - 'time01.samdom.aussieswithtails.fuzzbutt' # ToDo: use fqdn?
