@@ -19,6 +19,13 @@ file {'puppet.conf':
   mode    => '0644',
 }
 
+file {'hiera.yaml':
+  ensure  => file,
+  path    => "${settings::codedir}/hiera.yaml",
+  content => file('bootstrap/hiera.yaml'),
+  mode    => '0644',
+}
+
 host { 'puppetmaster':
   ip           => '10.0.2.15',
   host_aliases => ['puppet', ],
