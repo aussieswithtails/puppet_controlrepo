@@ -60,6 +60,7 @@ DEPENDENCIES
   puppetlabs-ntp (= 4.1.2)
   puppetlabs-pe_gem (= 0.1.2)
   puppetlabs-ruby (= 0.4.0)
+  puppetlabs-stdlib (= 4.11.0)
   puppetlabs-vcsrepo (= 1.3.2)
   stahnma-epel (= 1.2.2)
   zack-r10k (= 3.2.0)
