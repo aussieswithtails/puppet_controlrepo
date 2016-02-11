@@ -17,7 +17,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     server.vm.provision "shell", inline: "/vagrant/bootstrap/scripts/bootstrap_server.sh"
     server.vm.provision "Puppet Phase:", type: "puppet" do |puppet|
       puppet.binary_path = '/opt/puppetlabs/bin'
-      puppet.environment = 'br_vgnetwork'
+      puppet.environment = 'bootstrap'
       puppet.environment_path = "."
       puppet.manifest_file = 'bootstrap.pp'
       puppet.manifests_path = 'bootstrap/manifests'
@@ -27,7 +27,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
   config.vm.define "puppetagent" do |agent|
     agent.vm.box = "puppetlabs/ubuntu-14.04-64-puppet"
-    agent.vm.network "private_network", ip: '192.168.99.100'
+    agent.vm.network "private_network", ip: '192.168.99.101'
     agent.vm.provider "virtualbox" do |vbox|
       vbox.memory = 512
     end
@@ -50,5 +50,5 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #   config.vm.provider "virtualbox" do |vbox|
   #     vbox.memory = 512
   #   end
-    
+
 end
