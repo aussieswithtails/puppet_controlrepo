@@ -38,4 +38,6 @@ node default {
   # Example:
   #   class { 'my_class': }
   include ::profile::base
+  include ::puppetdb
+include ::puppetdb::master::config
 }

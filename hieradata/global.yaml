@@ -22,3 +22,12 @@ ntp::restrict:
   - '::1'
 ntp::servers:
   - 'time01.samdom.aussieswithtails.fuzzbutt' # ToDo: use fqdn?
+
+# Data for PuppetDB
+puppetdb::listen_port: '18080'
+puppetdb::manage_dbserver: true
+puppetdb::database: 'postgresql'
+puppetdb::database_username: 'puppetdb'
+puppetdb::database_password: 'puppetdb' #FixMe
+puppetdb::database_name: 'puppetdb'
+puppetdb::puppetdb_service_status: 'running'

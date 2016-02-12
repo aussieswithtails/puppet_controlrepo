@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/vgnetwork.iml" filepath="$PROJECT_DIR$/vgnetwork.iml" />
+      <module fileurl="file://$PROJECT_DIR$/puppetdb.iml" filepath="$PROJECT_DIR$/puppetdb.iml" />
     </modules>
   </component>
 </project>
