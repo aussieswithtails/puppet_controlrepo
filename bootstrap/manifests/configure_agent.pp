@@ -20,6 +20,7 @@ file {'hiera.yaml':
   mode    => '0644',
 }
 
+# FixMe duplicated in configure server
 file { 'environment_link':
   ensure => link,
   path   => "${settings::codedir}/environments/development",
@@ -29,7 +30,7 @@ file { 'environment_link':
 host { 'pserver':
   ensure       => present,
   name         => 'pserver.test',
-  ip           => '192.168.99.100',
+  ip           => '192.168.99.103',
   host_aliases => 'pserver',
 }
 

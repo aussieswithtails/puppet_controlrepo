@@ -39,6 +39,16 @@
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" default="true" assert-keyword="true" jdk-15="true" project-jdk-name="rbenv: 2.2.3" project-jdk-type="RUBY_SDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
+  <component name="PuppetProjectConfiguration">
+    <environmentSettings>
+      <PuppetEnvironmentSettings currentEnvironmentName="br_vgnetwork">
+        <environmentSet>
+          <Environment name="production" modulepath="/etc/puppetlabs/puppet/modules:/usr/share/puppet/modules:/opt/puppet/share/puppet/modules" />
+          <Environment name="br_vgnetwork" modulepath="/etc/puppetlabs/puppet/modules:/usr/share/puppet/modules:/opt/puppet/share/puppet/modules" />
+        </environmentSet>
+      </PuppetEnvironmentSettings>
+    </environmentSettings>
+  </component>
   <component name="masterDetails">
     <states>
       <state key="ProjectJDKs.UI">
