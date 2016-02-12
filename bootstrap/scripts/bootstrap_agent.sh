@@ -4,5 +4,5 @@ source /vagrant/bootstrap/scripts/init_repo.sh
 
 apt-get install -y puppet-agent
 
-source /vagrant/bootstrap/scripts/bootstrap_r10k.sh
+#source /vagrant/bootstrap/scripts/bootstrap_r10k.sh
 

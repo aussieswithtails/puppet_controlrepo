@@ -4,7 +4,7 @@
 #File { backup => false }
 
 
-notify{'Configure an AWT Test Puppet System':}
+notify{'Configure an AWT Test PuppetServer':}
 file {'autosign.conf':
   ensure  => file,
   path    => "${settings::confdir}/autosign.conf",
@@ -26,13 +26,13 @@ file {'hiera.yaml':
   mode    => '0644',
 }
 
-host { 'puppetmaster':
-  ip           => '10.0.2.15',
-  host_aliases => ['puppet', ],
-}
-
 service {'puppetserver':
   ensure  => running,
 }
 
-
+host { 'pagent':
+  ensure       => present,
+  name         => 'pagent.test',
+  host_aliases => ['pagent',],
+  ip           => '192.168.99.101',
+}

@@ -8,9 +8,10 @@ require 'yaml'
 configurator = YAML.load_file(File.join(File.dirname(__FILE__), 'bootstrap/configuration.yml'))
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.define "puppetserver" do |server|
+  config.vm.define "pserver" do |server|
     server.vm.box = "puppetlabs/ubuntu-14.04-64-puppet"
     server.vm.network "private_network", ip: '192.168.99.100'
+    server.vm.hostname = 'pserver.test'
     server.vm.provider "virtualbox" do |vbox|
       vbox.memory = 4096
     end
@@ -19,28 +20,29 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.binary_path = '/opt/puppetlabs/bin'
       puppet.environment = 'bootstrap'
       puppet.environment_path = "."
-      puppet.manifest_file = 'bootstrap.pp'
+      puppet.manifest_file = 'configure_server.pp'
       puppet.manifests_path = 'bootstrap/manifests'
       puppet.module_path = '.'
       puppet.options = '--verbose'
     end
   end
-  config.vm.define "puppetagent" do |agent|
+  config.vm.define "pagent" do |agent|
     agent.vm.box = "puppetlabs/ubuntu-14.04-64-puppet"
     agent.vm.network "private_network", ip: '192.168.99.101'
+    agent.vm.hostname = 'pserver.test'
     agent.vm.provider "virtualbox" do |vbox|
       vbox.memory = 512
     end
     agent.vm.provision "shell", inline: "/vagrant/bootstrap/scripts/bootstrap_agent.sh"
-    # agent.vm.provision "Puppet Phase:", type: "puppet" do |puppet|
-    #   puppet.binary_path = '/opt/puppetlabs/bin'
-    #   puppet.environment = 'br_vgnetwork'
-    #   puppet.environment_path = "."
-    #   puppet.manifest_file = 'bootstrap.pp'
-    #   puppet.manifests_path = 'bootstrap/manifests'
-    #   puppet.module_path = '.'
-    #   puppet.options = '--verbose'
-    #end
+    agent.vm.provision "Puppet Phase:", type: "puppet" do |puppet|
+      puppet.binary_path = '/opt/puppetlabs/bin'
+      puppet.environment = 'bootstrap'
+      puppet.environment_path = "."
+      puppet.manifest_file = 'configure_agent.pp'
+      puppet.manifests_path = 'bootstrap/manifests'
+      puppet.module_path = '.'
+      puppet.options = '--verbose'
+    end
   end
 
 
