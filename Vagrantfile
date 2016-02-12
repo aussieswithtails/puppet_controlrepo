@@ -10,7 +10,7 @@ configurator = YAML.load_file(File.join(File.dirname(__FILE__), 'bootstrap/confi
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.define "pserver" do |server|
     server.vm.box = "puppetlabs/ubuntu-14.04-64-puppet"
-    server.vm.network "private_network", ip: '192.168.99.100'
+    server.vm.network "private_network", ip: '192.168.99.103'
     server.vm.hostname = 'pserver.test'
     server.vm.provider "virtualbox" do |vbox|
       vbox.memory = 4096
@@ -29,9 +29,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.define "pagent" do |agent|
     agent.vm.box = "puppetlabs/ubuntu-14.04-64-puppet"
     agent.vm.network "private_network", ip: '192.168.99.101'
-    agent.vm.hostname = 'pserver.test'
+    agent.vm.hostname = 'pagent.test'
     agent.vm.provider "virtualbox" do |vbox|
-      vbox.memory = 512
+      vbox.memory = 1048
     end
     agent.vm.provision "shell", inline: "/vagrant/bootstrap/scripts/bootstrap_agent.sh"
     agent.vm.provision "Puppet Phase:", type: "puppet" do |puppet|

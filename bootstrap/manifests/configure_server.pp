@@ -30,6 +30,13 @@ service {'puppetserver':
   ensure  => running,
 }
 
+# FixMe duplicated in configure server
+file { 'environment_link':
+  ensure => link,
+  path   => "${settings::codedir}/environments/development",
+  target => '/vagrant',
+}
+
 host { 'pagent':
   ensure       => present,
   name         => 'pagent.test',
