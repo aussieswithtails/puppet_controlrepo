@@ -25,9 +25,8 @@ ntp::servers:
 
 # Data for PuppetDB
 puppetdb::listen_port: '18080'
-puppetdb::manage_dbserver: true
-puppetdb::database: 'postgres'
-puppetdb::database_username: 'puppetdb'
-puppetdb::database_password: 'puppetdb' #FixMe
 puppetdb::database_name: 'puppetdb'
-puppetdb::puppetdb_service_status: 'running'
+puppetdb::database_password: 'teABoNlARTErYGmATo'
+puppetdb::database_username: 'puppetdb'
+puppetdb::master::config::puppetdb_server: "%{facts.fqdn}"
+

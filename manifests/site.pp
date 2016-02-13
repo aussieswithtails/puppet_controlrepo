@@ -51,14 +51,6 @@ node 'puppetmaster01.samdom.aussieswithtails.fuzzbutt', 'puppetmaster01.test' {
     path    => "${::settings::confdir}/puppet.conf"
   }
 
-#  ini_setting { 'dns_alt_names':
-#    ensure  => present,
-#    section => 'master',
-#    setting => 'puppetmaster01',
-#    value   => $facts['fqdn'],
-#    path    => "${::settings::confdir}/puppet.conf"
-#  }
-
   ini_setting { 'certname':
     ensure  => present,
     section => 'master',
@@ -74,5 +66,5 @@ node 'puppetmaster01.samdom.aussieswithtails.fuzzbutt', 'puppetmaster01.test' {
     value   => $facts['fqdn'],
     path    => "${::settings::confdir}/puppet.conf"
   }
-include ::profile::puppet::puppetdb
+include profile::puppet::puppetdb
 }
