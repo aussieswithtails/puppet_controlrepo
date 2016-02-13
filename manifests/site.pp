@@ -38,6 +38,10 @@ node default {
   # Example:
   #   class { 'my_class': }
   include ::profile::base
-  include ::puppetdb
-include ::puppetdb::master::config
+}
+
+node 'puppetmaster01.samdom.aussieswithtails.fuzzbutt', 'pserver.test' {
+  include ::profile::puppet::puppetdb
+#  include ::puppetdb
+#  include ::puppetdb::master::config
 }
