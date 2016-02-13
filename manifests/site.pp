@@ -40,8 +40,39 @@ node default {
   include ::profile::base
 }
 
-node 'puppetmaster01.samdom.aussieswithtails.fuzzbutt', 'pserver.test' {
-  include ::profile::puppet::puppetdb
-#  include ::puppetdb
-#  include ::puppetdb::master::config
+node 'puppetmaster01.samdom.aussieswithtails.fuzzbutt', 'puppetmaster01.test' {
+
+
+  ini_setting { 'server':
+    ensure  => present,
+    section => 'master',
+    setting => 'server',
+    value   => $facts['fqdn'],
+    path    => "${::settings::confdir}/puppet.conf"
+  }
+
+#  ini_setting { 'dns_alt_names':
+#    ensure  => present,
+#    section => 'master',
+#    setting => 'puppetmaster01',
+#    value   => $facts['fqdn'],
+#    path    => "${::settings::confdir}/puppet.conf"
+#  }
+
+  ini_setting { 'certname':
+    ensure  => present,
+    section => 'master',
+    setting => 'certname',
+    value   => $facts['fqdn'],
+    path    => "${::settings::confdir}/puppet.conf"
+  }
+
+  ini_setting { 'agent_server':
+    ensure  => present,
+    section => 'agent',
+    setting => 'server',
+    value   => $facts['fqdn'],
+    path    => "${::settings::confdir}/puppet.conf"
+  }
+include ::profile::puppet::puppetdb
 }

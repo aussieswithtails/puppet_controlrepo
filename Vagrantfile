@@ -11,12 +11,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.define "pserver" do |server|
     server.vm.box = "puppetlabs/ubuntu-14.04-64-puppet"
     server.vm.network "private_network", ip: '192.168.99.103'
-    server.vm.hostname = 'pserver.test'
+    server.vm.hostname = 'puppetmaster01.test'
     server.vm.provider "virtualbox" do |vbox|
       vbox.memory = 4096
     end
-    server.vm.provision "shell", inline: "/vagrant/bootstrap/scripts/bootstrap_server.sh"
-    server.vm.provision "Puppet Phase:", type: "puppet" do |puppet|
+    server.vm.provision "shell", inline: "/vagrant/bootstrap/scripts/bootstrap_server.sh puppetmaster01.test"
+    server.vm.provision "Provision Bootstrapper:", type: "puppet" do |puppet|
       puppet.binary_path = '/opt/puppetlabs/bin'
       puppet.environment = 'bootstrap'
       puppet.environment_path = "."
@@ -24,6 +24,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.manifests_path = 'bootstrap/manifests'
       puppet.module_path = '.'
       puppet.options = '--verbose'
+    end
+    server.vm.provision "Init:", type: 'puppet_server' do |pserver|
+      pserver.options = '--test' #FixMe Add ability to debug
+      pserver.puppet_server = 'puppetmaster01.test'
     end
   end
   config.vm.define "pagent" do |agent|
