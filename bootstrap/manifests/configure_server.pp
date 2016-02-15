@@ -5,24 +5,12 @@
 
 
 notify{'Configure an AWT Test PuppetServer':}
+include bootstrap::common
+
 file {'autosign.conf':
   ensure  => file,
   path    => "${settings::confdir}/autosign.conf",
   content => file('bootstrap/autosign.conf'),
-  mode    => '0644',
-}
-
-file {'puppet.conf':
-  ensure  => file,
-  path    => "${settings::confdir}/puppet.conf",
-  content => file('bootstrap/puppet.conf'),
-  mode    => '0644',
-}
-
-file {'hiera.yaml':
-  ensure  => file,
-  path    => "${settings::codedir}/hiera.yaml",
-  content => file('bootstrap/hiera.yaml'),
   mode    => '0644',
 }
 

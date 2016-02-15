@@ -5,20 +5,8 @@
 
 
 notify{'Configuring an AWT Test Puppet Agent':}
+include bootstrap::common
 
-#file {'puppet.conf':
-#  ensure  => file,
-#  path    => "${settings::confdir}/puppet.conf",
-#  content => file('bootstrap/puppet.conf'),
-#  mode    => '0644',
-#}
-#
-#file {'hiera.yaml':
-#  ensure  => file,
-#  path    => "${settings::codedir}/hiera.yaml",
-#  content => file('bootstrap/hiera.yaml'),
-#  mode    => '0644',
-#}
 
 # FixMe duplicated in configure server
 file { 'environment_link':
@@ -31,6 +19,6 @@ host { 'pserver':
   ensure       => present,
   name         => 'puppetserver01.test',
   ip           => '192.168.99.103',
-  host_aliases => 'puppetserver01, pserver',
+  host_aliases => 'puppetserver01,pserver',
 }
 
