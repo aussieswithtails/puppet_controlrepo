@@ -1,2 +1,10 @@
 ---
 message: "This node is using Production Tier Data"
+# Data for PuppetDB
+puppetdb::listen_port: '18080'
+puppetdb::ssl_listen_port: '18081'
+puppetdb::database_name: 'puppetdb'
+puppetdb::database_password: 'teABoNlARTErYGmATo'
+puppetdb::database_username: 'puppetdb'
+puppetdb::service_status: 'running'
+puppetdb::master::config::puppetdb_port: "18081"
