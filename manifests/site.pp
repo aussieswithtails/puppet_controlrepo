@@ -68,3 +68,4 @@ node 'puppetmaster01.samdom.aussieswithtails.fuzzbutt', 'puppetmaster01.test', '
   }
 include ::profile::puppet::server
 }
+
