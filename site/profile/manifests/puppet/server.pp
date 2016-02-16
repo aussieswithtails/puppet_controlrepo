@@ -5,6 +5,7 @@ class profile::puppet::server {
     content => file('profile/hiera.yaml'),
     mode    => '0644',
   }
+
   include ::puppetdb
   include ::puppetdb::master::config
 }

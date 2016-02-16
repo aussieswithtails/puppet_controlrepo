@@ -23,3 +23,5 @@ ntp::restrict:
 ntp::servers:
   - 'time01.samdom.aussieswithtails.fuzzbutt' # ToDo: use fqdn?
 
+puppetdb::listen_port: '18080'
+puppetdb::ssl_listen_port: '18081'
