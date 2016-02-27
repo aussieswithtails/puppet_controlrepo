@@ -1,6 +1,8 @@
 FORGE
   remote: https://forgeapi.puppetlabs.com
   specs:
+    aptituz-ssh (2.3.2)
+      puppetlabs-stdlib (>= 1.0.0)
     camptocamp-archive (0.8.1)
     croddy-make (0.0.5)
     danzilio-virtualbox (1.6.0)
@@ -54,6 +56,7 @@ FORGE
       puppetlabs-vcsrepo (>= 0.1.2)
 
 DEPENDENCIES
+  aptituz-ssh (= 2.3.2)
   camptocamp-archive (= 0.8.1)
   croddy-make (= 0.0.5)
   danzilio-virtualbox (= 1.6.0)

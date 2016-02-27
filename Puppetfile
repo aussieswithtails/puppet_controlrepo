@@ -2,6 +2,7 @@ forge 'https://forgeapi.puppetlabs.com'
 
 
 # Modules from the Puppet Forge
+mod 'aptituz/ssh', '2.3.2'
 mod 'camptocamp/archive', '0.8.1'
 mod 'croddy/make', '0.0.5'
 mod 'danzilio/virtualbox', '1.6.0'
