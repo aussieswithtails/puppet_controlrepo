@@ -22,6 +22,7 @@ mod 'puppetlabs/puppetdb', '5.1.1'
 mod 'puppetlabs/ruby', '0.4.0'
 mod 'puppetlabs/vcsrepo', '1.3.2'
 mod 'puppetlabs/stdlib', '4.11.0'
+mod 'saz/sudo', '3.1.0'
 mod 'stahnma/epel', '1.2.2'
 mod 'zack/r10k', '3.2.0'
 #

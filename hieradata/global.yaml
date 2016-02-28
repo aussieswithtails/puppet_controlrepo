@@ -23,3 +23,7 @@ ntp::restrict:
 ntp::servers:
   - 'time01.samdom.aussieswithtails.fuzzbutt' # ToDo: use fqdn?
 
+sudo::configs:
+  'admin':
+    'content':  '%admin ALL=(ALL) NOPASSWD: ALL'
+    'priority': 10
