@@ -13,7 +13,7 @@ class bootstrap::common {
     mode    => '0644',
   }
 
-  file {['/etc/facter', '/etc/facter/facter.d']:
+  file {['/etc/facter', '/etc/facter/facts.d']:
     ensure  => directory,
   }
 
