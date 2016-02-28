@@ -39,7 +39,7 @@
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" default="true" assert-keyword="true" jdk-15="true" project-jdk-name="rbenv: 2.2.3" project-jdk-type="RUBY_SDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
-  <component name="PuppetProjectConfiguration">
+  <component name="PuppetProjectConfiguration" languageVersion="Puppet 4">
     <environmentSettings>
       <PuppetEnvironmentSettings currentEnvironmentName="add_admin_user">
         <environmentSet>

@@ -38,4 +38,9 @@ class profile::base {
 
   include sudo
   include sudo::configs
+
+  sudo::conf { 'admin':
+    content   => '%admin ALL=(ALL) NOPASSWD: ALL',
+    priority  => 10,
+  }
 }
