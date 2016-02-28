@@ -2,5 +2,5 @@
 message: "This node is using Development Tier Data"
 
 sudo::purge: false
-sudo::config_file_replace: false
+sudo::config_file_replace: true
 

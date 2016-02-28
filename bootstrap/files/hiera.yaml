@@ -2,7 +2,7 @@
 :backends:
   - yaml
 :hierarchy:
-  - "tier/%{facts.tier}"
+  - "tier/%{::facts.tier}"
   - global
 
 :yaml:
