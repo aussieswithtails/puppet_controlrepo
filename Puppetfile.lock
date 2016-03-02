@@ -1,6 +1,8 @@
 FORGE
   remote: https://forgeapi.puppetlabs.com
   specs:
+    aptituz-ssh (2.3.2)
+      puppetlabs-stdlib (>= 1.0.0)
     camptocamp-archive (0.8.1)
     croddy-make (0.0.5)
     danzilio-virtualbox (1.6.0)
@@ -8,6 +10,8 @@ FORGE
       puppetlabs-apt (< 3.0.0, >= 2.1.0)
       puppetlabs-stdlib (< 5.0.0, >= 2.6.0)
       stahnma-epel (< 2.0.0, >= 0.0.6)
+    flypenguin-mkdir (1.0.4)
+      puppetlabs-stdlib (< 5.0.0, >= 3.0.0)
     gentoo-portage (2.3.0)
       puppetlabs-concat (>= 0)
     nanliu-staging (1.0.3)
@@ -40,6 +44,8 @@ FORGE
       puppetlabs-stdlib (< 5.0.0, >= 3.2.0)
     puppetlabs-stdlib (4.11.0)
     puppetlabs-vcsrepo (1.3.2)
+    saz-sudo (3.1.0)
+      puppetlabs-stdlib (< 5.0.0, >= 2.3.0)
     stahnma-epel (1.2.2)
       puppetlabs-stdlib (>= 3.0.0)
     unibet-vagrant (0.2.1)
@@ -56,9 +62,11 @@ FORGE
       puppetlabs-vcsrepo (>= 0.1.2)
 
 DEPENDENCIES
+  aptituz-ssh (= 2.3.2)
   camptocamp-archive (= 0.8.1)
   croddy-make (= 0.0.5)
   danzilio-virtualbox (= 1.6.0)
+  flypenguin-mkdir (= 1.0.4)
   gentoo-portage (= 2.3.0)
   nanliu-staging (= 1.0.3)
   puppetlabs-apt (= 2.2.1)
@@ -75,6 +83,7 @@ DEPENDENCIES
   puppetlabs-ruby (= 0.4.0)
   puppetlabs-stdlib (= 4.11.0)
   puppetlabs-vcsrepo (= 1.3.2)
+  saz-sudo (= 3.1.0)
   stahnma-epel (= 1.2.2)
   unibet-vagrant (= 0.2.1)
   zack-r10k (= 3.2.0)

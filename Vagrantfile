@@ -44,7 +44,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.environment_path = "."
       puppet.manifest_file = 'configure_agent.pp'
       puppet.manifests_path = 'bootstrap/manifests'
-      puppet.module_path = '.'
+      puppet.module_path = ['.','./modules']
       puppet.options = '--verbose'
     end
   end
