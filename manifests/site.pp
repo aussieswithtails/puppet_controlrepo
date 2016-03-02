@@ -66,6 +66,7 @@ node 'puppetmaster01.samdom.aussieswithtails.fuzzbutt', 'puppetmaster01.test', '
     value   => $facts['fqdn'],
     path    => "${::settings::confdir}/puppet.conf"
   }
-include ::profile::puppet::server
+
+  include ::role::fuzzbuttnet_master_server
 }
 

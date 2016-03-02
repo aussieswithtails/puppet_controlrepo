@@ -22,6 +22,7 @@ mod 'puppetlabs/ruby', '0.4.0'
 mod 'puppetlabs/vcsrepo', '1.3.2'
 mod 'puppetlabs/stdlib', '4.11.0'
 mod 'stahnma/epel', '1.2.2'
+mod 'unibet/vagrant', '0.2.1'
 mod 'zack/r10k', '3.2.0'
 #
 # Modules from Github
