@@ -23,3 +23,4 @@ ntp::restrict:
 ntp::servers:
   - 'time01.samdom.aussieswithtails.fuzzbutt' # ToDo: use fqdn?
 
+virtualbox::version: '5.0'
