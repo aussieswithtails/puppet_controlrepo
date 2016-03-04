@@ -9,8 +9,10 @@ configurator = YAML.load_file(File.join(File.dirname(__FILE__), 'bootstrap/confi
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.define "pserver" do |server|
-    server.vm.box = "puppetlabs/ubuntu-14.04-64-puppet"
-    server.vm.network "private_network", ip: '192.168.99.103'
+    server.vm.box = "UbuntuWilyServer"
+    # setting private network is broken as of wily due to systemd related change to interface naming.
+    # Seehttps://github.com/mitchellh/vagrant/issues/6871
+    #    server.vm.network "private_network", ip: '192.168.99.103'
     server.vm.hostname = 'puppetmaster01.test'
     server.vm.provider "virtualbox" do |vbox|
       vbox.memory = 4096
@@ -31,8 +33,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
   end
   config.vm.define "pagent" do |agent|
-    agent.vm.box = "puppetlabs/ubuntu-14.04-64-puppet"
-    agent.vm.network "private_network", ip: '192.168.99.101'
+    agent.vm.box = "UbuntuWilyServer"
+    agent.ssh.username = 'administrator'
+    agent.ssh.password = '9073guss'
+    # setting private network is broken as of wily due to systemd related change to interface naming.
+    # Seehttps://github.com/mitchellh/vagrant/issues/6871
+#    agent.vm.network "private_network", ip: '192.168.99.101'
     agent.vm.hostname = 'pagent.test'
     agent.vm.provider "virtualbox" do |vbox|
       vbox.memory = 1048
@@ -48,13 +54,4 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.options = '--verbose'
     end
   end
-
-
-  # config.vm.define "agent" do |agent|
-  #   config.vm.box = "puppetlabs/ubuntu-14.04-64-puppet"
-  #   config.vm.network "private_network","192.168.99.101"
-  #   config.vm.provider "virtualbox" do |vbox|
-  #     vbox.memory = 512
-  #   end
-
 end
