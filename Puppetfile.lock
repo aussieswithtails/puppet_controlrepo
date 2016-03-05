@@ -61,6 +61,13 @@ FORGE
       puppetlabs-stdlib (>= 4.6.0)
       puppetlabs-vcsrepo (>= 0.1.2)
 
+GIT
+  remote: git://github.com/woldan/puppet-btrfs.git
+  ref: master
+  sha: 0ad66673eb765779c2b966f2aa878ea3f301946c
+  specs:
+    puppet-subvolume (0.0.1)
+
 DEPENDENCIES
   aptituz-ssh (= 2.3.2)
   camptocamp-archive (= 0.8.1)
@@ -69,6 +76,7 @@ DEPENDENCIES
   flypenguin-mkdir (= 1.0.4)
   gentoo-portage (= 2.3.0)
   nanliu-staging (= 1.0.3)
+  puppet-subvolume (>= 0)
   puppetlabs-apt (= 2.2.1)
   puppetlabs-concat (= 1.2.5)
   puppetlabs-firewall (= 1.7.2)

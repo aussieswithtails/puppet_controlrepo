@@ -4,3 +4,4 @@ message: "This node is using Development Tier Data"
 sudo::purge: false
 sudo::config_file_replace: true
 
+btrfs_device: '/dev/sda1'

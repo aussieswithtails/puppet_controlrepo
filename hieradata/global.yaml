@@ -24,3 +24,6 @@ ntp::servers:
   - 'time01.samdom.aussieswithtails.fuzzbutt' # ToDo: use fqdn?
 
 virtualbox::version: '5.0'
+
+btrfs_admin_mountpoint: '/mnt/btrfs'
+vms_repo: '/var/lib/vms'

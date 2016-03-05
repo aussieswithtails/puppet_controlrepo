@@ -8,19 +8,41 @@
 #   include ::profile::vmhost
 #
 class profile::vmhost {
-  include vagrant
-  include virtualbox
+  $btrfs_host_volume = hiera('btrfs_device')
+  $btrfs_admin_mountpoint = hiera('btrfs_admin_mountpoint')
+  $btrfs_vms_subvolume = '@vms'
+  $vms_mountpoint = hiera('vms_repo')
+  $btrfs_subvolume_path = "${btrfs_admin_mountpoint}/${btrfs_vms_subvolume}"
 
-#  $filtered_data = filter($::partitions.keys) |$partition| {
-#    $partition[$partition] =~ /ext4/
-#}
+  include ::vagrant
+  include ::virtualbox
 
-    notice( "Btrfs Partitions: #{$::btrfs_partitions}")
-#  $::partitions.each |Array $partition| {
-#      notice($partition[0])
-#    }
 
-  # create btrfs subvolumes as necessary
-  # mount subvolume
-  # add vagrant file
+  mkdir::p { 'btrfs_admin_mount_point':
+    path    => $btrfs_admin_mountpoint,
+  }
+
+  mkdir::p { 'vms_repo':
+    path    => $vms_mountpoint,
+  }
+
+  subvolume { $btrfs_subvolume_path:
+    ensure  => present,
+    require => Mount[$btrfs_admin_mountpoint],
+  }
+
+  mount { $btrfs_admin_mountpoint:
+    ensure => mounted,
+    device => $btrfs_host_volume,
+    fstype => 'btrfs',
+  }
+
+  mount { $vms_mountpoint:
+    ensure  => mounted,
+    device  => $btrfs_host_volume,
+    fstype  => 'btrfs',
+    options => "defaults,subvol=${btrfs_vms_subvolume}",
+    pass    => 2,
+    require => Subvolume[$btrfs_subvolume_path],
+  }
 }

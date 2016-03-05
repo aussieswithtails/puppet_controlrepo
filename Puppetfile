@@ -29,3 +29,7 @@ mod 'unibet/vagrant', '0.2.1'
 mod 'zack/r10k', '3.2.0'
 #
 # Modules from Github
+mod "puppet-subvolume",
+	:git => 'git://github.com/woldan/puppet-subvolume.git'
+mod "puppet-subvolume",
+	:git => 'git://github.com/woldan/puppet-btrfs.git'
