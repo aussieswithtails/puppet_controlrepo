@@ -15,6 +15,6 @@ class profile::puppet::master {
   }
 
 
-  include ::puppetdb
-  include ::puppetdb::master::config
+  contain ::puppetdb
+  contain ::puppetdb::master::config
 }
