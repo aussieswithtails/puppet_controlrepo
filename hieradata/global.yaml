@@ -25,9 +25,6 @@ ntp::servers:
 
 virtualbox::version: '5.0'
 
-btrfs_admin_mountpoint: '/mnt/btrfs'
-vms_repo: '/var/lib/vms'
-
 hiera::hiera_yaml: '/etc/puppetlabs/code/hiera.yaml' # FixMe
 hiera::hierarchy:
 #  - %{literal(%)}{::trusted.certname}
