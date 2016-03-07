@@ -1,4 +1,4 @@
 ---
 message: "This node is using oberon.samdom.aussieswithtails.fuzzbutt cert"
 
-btrfs_device: dc67d64f-67c1-4b1b-b491-17505ff5c91b
+btrfs_device: 'UUID=dc67d64f-67c1-4b1b-b491-17505ff5c91b'
