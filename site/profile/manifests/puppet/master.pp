@@ -6,6 +6,7 @@ class profile::puppet::master {
 #    mode    => '0644',
 #  }
   include hiera
+
   include ::puppetdb
   include ::puppetdb::master::config
 }

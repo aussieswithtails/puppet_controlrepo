@@ -8,7 +8,8 @@
 #   include ::profile::vmhost
 #
 class profile::vmhost {
-  $btrfs_host_volume = hiera('btrfs_device')
+  $btrfs_host_volume = hiera('btrfs_device')  #ToDo - Currently lack of value causes failure of catalog.
+                                              #Instead lack of value should result in failure of this profile only!
   $btrfs_admin_mountpoint = '/mnt/btrfs'
   $btrfs_vms_subvolume = '@vms'
   $vms_mountpoint = '/var/lib/vms'
