@@ -15,8 +15,8 @@ class profile::vmhost {
   $vms_mountpoint = '/var/lib/vms'
   $btrfs_subvolume_path = "${btrfs_admin_mountpoint}/${btrfs_vms_subvolume}"
 
-#  include ::vagrant
-#  include ::virtualbox
+  include ::vagrant
+  include ::virtualbox
 
   # Create a vms subvolume
   mkdir::p { 'btrfs_admin_mount_point':

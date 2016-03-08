@@ -20,6 +20,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       vbox.memory = 4096
     end
     server.vm.provision "shell", inline: "/vagrant/bootstrap/scripts/bootstrap_server.sh puppetmaster01.test"
+    server.vm.provision "shell", inline: "apt-get autoremove -y --purge "
     server.vm.provision "Provision Bootstrapper:", type: "puppet" do |puppet|
       puppet.binary_path = '/opt/puppetlabs/bin'
       puppet.environment = 'bootstrap'

@@ -26,7 +26,7 @@ mod 'puppetlabs/vcsrepo', '1.3.2'
 mod 'puppetlabs/stdlib', '4.11.0'
 mod 'saz/sudo', '3.1.0'
 mod 'stahnma/epel', '1.2.2'
-mod 'unibet/vagrant', '0.2.1'
+mod 'mjanser/vagrant', '1.1.0'
 mod 'zack/r10k', '3.2.0'
 #
 # Modules from Github
