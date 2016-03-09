@@ -11,7 +11,7 @@ class profile::ad_controller::backup_domain_controller {
 
   case $::osfamily {
     'Debian': {
-      include profile::vmhost
+      include profile::vmhost #ToDo Can this be/should be done through hiera
     }
   }
 

@@ -25,5 +25,9 @@ ntp::servers:
 
 virtualbox::version: '5.0'
 
-btrfs_admin_mountpoint: '/mnt/btrfs'
-vms_repo: '/var/lib/vms'
+hiera::hiera_yaml: '/etc/puppetlabs/code/hiera.yaml' # FixMe - can it be paramaratized
+hiera::master_service: 'puppetserver'
+hiera::hierarchy:
+  - "nodes/%{literal('%')}{trusted.certname}"
+  - "tier/%{literal('%')}{tier}"
+  - global
