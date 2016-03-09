@@ -32,5 +32,5 @@ mod 'zack/r10k', '3.2.0'
 # Modules from Github
 mod "puppet-subvolume",
 	:git => 'git://github.com/woldan/puppet-subvolume.git'
-mod "puppet-subvolume",
+mod "puppet-btrfs",
 	:git => 'git://github.com/woldan/puppet-btrfs.git'
