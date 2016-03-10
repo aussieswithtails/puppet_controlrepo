@@ -47,6 +47,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       vbox.memory = 1048
     end
     agent.vm.provision "shell", inline: "/vagrant/bootstrap/scripts/bootstrap_agent.sh"
+    agent.vm.provision "shell", inline: "apt-get autoremove -y --purge " #FixMe - can this be DRYed out?
     agent.vm.provision "Puppet Phase:", type: "puppet" do |puppet|
       puppet.binary_path = '/opt/puppetlabs/bin'
       puppet.environment = 'bootstrap'
