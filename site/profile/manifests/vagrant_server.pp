@@ -1,15 +1,21 @@
+# Class: profile::vagrant_server
+#
+# This class installs, configures and sets up a Vagrant repository
+#
+# Sample Usage:
+#
+#   include ::profile::vmhost
 class profile::vagrant_server {
-  # create a btrfs subvolume to host the vagrant repository and
-  # mount it at /var/www/<vagrant>
   $btrfs_admin_mountpoint = '/mnt/btrfs'
   $www_subvolume_id = '@www'
   $vagrant_subvolume_id = 'vagrant'
-  $vagrant_repo_mountpoint = '/var/lib/www/vagrant'
+  $vagrant_repo_mountpoint = '/srv/vagrant'
   $btrfs_host_volume = hiera('btrfs_device')  #ToDo - Currently lack of value causes failure of catalog.
+  $vagrant_box_dir = "${vagrant_repo_mountpoint}/devops/boxes"
 
 #  $btrfs_www_subvolume_path = "${btrfs_admin_mountpoint}/${www_subvolume_id}"
 #  $btrfs_vagrant_subvolume = "${btrfs_www_subvolume_path}/$vagrant_subvolume_id"
-
+#www-data
 
   # FixMe - this entire process of creating and mounting a btrfs subvolume should be put in a module
   # Create a vms subvolume
@@ -39,7 +45,7 @@ class profile::vagrant_server {
     path    => $vagrant_repo_mountpoint,
     before  => Mount[$vagrant_repo_mountpoint]
   }
-#
+
   mount { $vagrant_repo_mountpoint:
     ensure  => mounted,
     device  => $btrfs_host_volume,
@@ -48,6 +54,11 @@ class profile::vagrant_server {
     pass    => 2,
     require => Subvolume["${btrfs_admin_mountpoint}/${www_subvolume_id}/${vagrant_subvolume_id}"],
   }
-#   add an nginx server
 
+  # Create the vagrant repo structure
+  mkdir::p {'vagrant_boxes':
+    path    => $vagrant_box_dir,
+    owner   => $repo_owner,
+    require => Mount[$vagrant_repo_mountpoint]
+  }
 }
