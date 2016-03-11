@@ -61,4 +61,39 @@ class profile::vagrant_server {
     owner   => $repo_owner,
     require => Mount[$vagrant_repo_mountpoint]
   }
+
+  #Nginx installation/configuration
+  include ::nginx
+  nginx::resource::vhost { "www.${facts['domain']}":
+    www_root => '/var/www',
+  }
+
+  # Match the box name in location and search for its catalog
+  # e.g. http://www.example.com/vagrant/devops/ resolves /var/www/vagrant/devops/devops.json
+  nginx::resource::location { '~ ^/vagrant/([^\/]+)/$ ':
+    ensure  => present,
+    vhost   => "www.${facts['domain']}",
+    location => '~ ^/vagrant/([^\/]+)/$ ',
+    www_root  => $vagrant_repo_mountpoint,
+    autoindex => 'off',
+    index_files => ['$1.json'],
+    try_files   => ['$uri', '$uri/', '$1.json =404'],
+  }
+
+  # Enable auto indexing for the folder with box files
+  nginx::resource::location { '~ ^/vagrant/([^\/]+)/boxes/$':
+    ensure    => present,
+    autoindex => on,
+
+    location  => '~ ^/vagrant/([^\/]+)/boxes/$',
+    try_files => ['$uri', '$uri/ =404'],
+    vhost   => "www.${facts['domain']}",
+    www_root  => $vagrant_repo_mountpoint,
+  }
+#  location ~ ^/vagrant/([^\/]+)/boxes/$ {
+#try_files $uri $uri/ =404;
+#autoindex on;
+#autoindex_exact_size on;
+#autoindex_localtime on;
+#}
 }

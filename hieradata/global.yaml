@@ -31,3 +31,6 @@ hiera::hierarchy:
   - "nodes/%{literal('%')}{trusted.certname}"
   - "tier/%{literal('%')}{tier}"
   - global
+
+nginx::manage_repo: true
+nginx::package_source: 'nginx-mainline'
