@@ -31,3 +31,9 @@ hiera::hierarchy:
   - "nodes/%{literal('%')}{trusted.certname}"
   - "tier/%{literal('%')}{tier}"
   - global
+
+# btrfs
+profile::btrfs::admin_mountpoint: '/mnt/btrfs'
+
+gitolite::admin_key_source: '/home/administrator/.ssh/id_rsa.pub'
+gitolite::manage_home_dir: false

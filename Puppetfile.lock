@@ -10,6 +10,8 @@ FORGE
       puppetlabs-apt (< 3.0.0, >= 2.1.0)
       puppetlabs-stdlib (< 5.0.0, >= 2.6.0)
       stahnma-epel (< 2.0.0, >= 0.0.6)
+    echoes-gitolite (0.4.0)
+      puppetlabs-stdlib (>= 1.0.0)
     flypenguin-mkdir (1.0.4)
       puppetlabs-stdlib (< 5.0.0, >= 3.0.0)
     gentoo-portage (2.3.0)
@@ -68,6 +70,13 @@ GIT
   ref: master
   sha: 0ad66673eb765779c2b966f2aa878ea3f301946c
   specs:
+    puppet-btrfs (0.0.1)
+
+GIT
+  remote: git://github.com/woldan/puppet-subvolume.git
+  ref: master
+  sha: 45c460da36185dfe488dead621f95c1241ed139a
+  specs:
     puppet-subvolume (0.0.1)
 
 DEPENDENCIES
@@ -75,11 +84,13 @@ DEPENDENCIES
   camptocamp-archive (= 0.8.1)
   croddy-make (= 0.0.5)
   danzilio-virtualbox (= 1.6.0)
+  echoes-gitolite (= 0.4.0)
   flypenguin-mkdir (= 1.0.4)
   gentoo-portage (= 2.3.0)
   hunner-hiera (= 2.0.1)
   mjanser-vagrant (= 1.1.0)
   nanliu-staging (= 1.0.3)
+  puppet-btrfs (>= 0)
   puppet-subvolume (>= 0)
   puppetlabs-apt (= 2.2.1)
   puppetlabs-concat (= 1.2.5)
