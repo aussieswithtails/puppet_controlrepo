@@ -41,5 +41,4 @@ class profile::vmhost {
     before  => Mount[$vms_mountpoint]
   }
 
-source
 }

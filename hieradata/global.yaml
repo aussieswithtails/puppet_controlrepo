@@ -36,4 +36,8 @@ hiera::hierarchy:
 profile::btrfs::admin_mountpoint: '/mnt/btrfs'
 
 gitolite::admin_key_source: '/home/administrator/.ssh/id_rsa.pub'
-gitolite::manage_home_dir: false
+gitolite::manage_home_dir: true
+gitolite::manage_user: false
+gitolite::group_name: 'gitolite'
+gitolite::user_name: 'gitolite'
+gitolite::home_dir: '/srv/gitolite'
