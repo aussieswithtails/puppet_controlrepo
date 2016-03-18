@@ -16,7 +16,6 @@ define profile::types::file_and_mount (
   }
   exec { "fix ${name} perms":
     command => "/bin/chmod ${mode} ${name} && /bin/chown ${owner}:${group} ${name}",
-    # command => "/usr/bin/ls ${name}",
     refreshonly => true,
   }
 }

@@ -33,7 +33,9 @@ hiera::hierarchy:
   - global
 
 # btrfs
-profile::btrfs::admin_mountpoint: '/mnt/btrfs'
+awt::btrfs::admin_mountpoint: '/mnt/btrfs'
+awt::server_home: '/srv'
+awt::nologin_shell: '/usr/sbin/nologin'
 
 # Gitolite settings
 # Note that we don't let gitolite manage the user or home directory

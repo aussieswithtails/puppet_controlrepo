@@ -1,63 +1,67 @@
-#ToDo - Refactor
-# DRY
 
-class profile::git::gitolite {
-  notify { "Applying profile: profile::git::gitolite": }
 
-  include gitolite
+class profile::git::gitolite (
+  $btrfs_admin_mountpoint = hiera('awt::btrfs::admin_mountpoint'),
+  $btrfs_device = hiera('btrfs_device'), #ToDo - Currently lack of value causes failure of catalog. Instead lack of value should result in failure of this profile only!
+  $btrfs_gitolite_subvolume_id = '@gitolite',
+  $btrfs_subvolume_parent_path = $btrfs_admin_mountpoint,
+  $gitolite_server_id = 'gitolite',
+  $gitolite_mountpoint = "${hiera('awt::server_home')}/${gitolite_server_id}",
+  $gitolite_server_owner = 'gitolite',
+  $gitolite_server_group = 'gitolite',
+){
+  $btrfs_subvolume_path = "${btrfs_subvolume_parent_path}/${btrfs_gitolite_subvolume_id}"
 
-  user { 'gitolite':
+  notify { 'Applying profile: profile::git::gitolite': }
+  notify { "Debug: btrfs_admin_mountpoint = ${btrfs_admin_mountpoint}":}
+  notify { "Debug: btrfs_device = ${btrfs_device}":}
+  notify { "Debug: btrfs_gitolite_subvolume_id = ${btrfs_gitolite_subvolume_id}":}
+  notify { "Debug: btrfs_subvolume_parent_path = ${btrfs_subvolume_parent_path}":}
+  notify { "Debug: gitolite_server_id = ${gitolite_server_id}":}
+  notify { "Debug: gitolite_mountpoint  = ${gitolite_mountpoint}":}
+  notify { "Debug: gitolite_server_owner = ${gitolite_server_owner}":}
+  notify { "Debug: gitolite_server_group = ${gitolite_server_group}":}
+  notify { "Debug: btrfs_subvolume_path = ${btrfs_subvolume_path}":}
+
+  include ::gitolite
+
+  user { $gitolite_server_owner:
     ensure     => present,
-    home       => '/srv/gitolite',
+    home       => $gitolite_mountpoint,
     managehome => true,
-    name       => 'gitolite',
-    shell      => '/usr/sbin/nologin',
+    shell      => hiera('awt::nologin_shell'),
     system     => true,
-
   }
 
 
-
-
-  #  notify {"Debug - Prior to Config":
-  #    before  => Class['Gitolite::Config']
-  #  }
-  $btrfs_host_volume = hiera('btrfs_device')  #ToDo - Currently lack of value causes failure of catalog.
-  #Instead lack of value should result in failure of this profile only!
-  $btrfs_admin_mountpoint = hiera('profile::btrfs::admin_mountpoint')
-  $btrfs_gitserver_subvolume = '@gitolite'
-  $gitolite_mountpoint = hiera('gitolite::home_dir')
-  $btrfs_subvolume_path = "${btrfs_admin_mountpoint}/${btrfs_gitserver_subvolume}"
-
-  profile::types::file_and_mount { '/mnt/btrfs':
-    file_params   => { },
-    mount_params  => {
-      'atboot'  => false,
-      'ensure'  => mounted,
-      'device'  => $btrfs_host_volume,
-      'fstype'  => 'btrfs',
+  profile::types::file_and_mount { $btrfs_admin_mountpoint:
+    file_params  => { },
+    mount_params => {
+      'atboot' => false,
+      'ensure' => mounted,
+      'device' => $btrfs_device,
+      'fstype' => 'btrfs',
     },
   }
 
   subvolume { $btrfs_subvolume_path: #FixMe - I don't like syntax here. Should be a parameter that specifies
-    ensure   => present,              # path to where btrfs is mounted
-    require  => Profile::Types::File_and_mount['/mnt/btrfs']
+    ensure  => present,              # path to where btrfs is mounted
+    require => Profile::Types::File_and_mount[$btrfs_admin_mountpoint],
   }
 
 
-  profile::types::file_and_mount { '/srv/gitolite':
-    file_params => {
-      'owner' => 'gitolite',
-      'group' => 'gitolite',
+  profile::types::file_and_mount { $gitolite_mountpoint:
+    file_params  => {
+      'owner' => $gitolite_server_owner,
+      'group' => $gitolite_server_group,
     },
-    mount_params  => {
+    mount_params => {
       'ensure'  => mounted,
       'atboot'  => true,
-      'device'  => $btrfs_host_volume,
+      'device'  => $btrfs_device,
       'fstype'  => btrfs,
-      'options' => "defaults,subvol=${$btrfs_gitserver_subvolume}",
+      'options' => "defaults,subvol=${btrfs_gitolite_subvolume_id}",
     },
-    require  => [User['gitolite'], Subvolume[$btrfs_subvolume_path]],
-    # before   => Class['Gitolite']
+    require      => [User[$gitolite_server_owner], Subvolume[$btrfs_subvolume_path]],
   }
 }
