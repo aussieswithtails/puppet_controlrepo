@@ -1,34 +1,22 @@
 define profile::types::file_and_mount (
-  $atboot,
-  $device,
-  $dump,
-  $fstype,
-  $group,
-  $mode,
-  $options,
-  $owner,
-  $path = $title,
+  $file_params,
+  $mount_params,
 ) {
+  $owner = pick_default($file_params['owner'], 'root')
+  $group = pick_default($file_params['group'], 'root')
+  $mode = pick_default($file_params['mode'], '0755')
   file { $name:
-    ensure => 'directory',
-    group  => $group,
-    mode   => $mode,
-    owner  => $owner,
-    path   => $path,
+    ensure  => directory,
+    * => $file_params,
   }
   mount { $name:
-    ensure  => 'mounted',
-    name    => $path,
-    atboot  => $atboot,
-    device  => $device,
-    dump    => $dump,
-    fstype  => $fstype,
-    options => $options,
+    * => $mount_params,
     require => File[$name],
-    notify  => Exec['fix_mount_perms']
+    notify  => Exec["fix ${name} perms"]
   }
-  exec { 'fix_mount_perms':
-    command => "chmod ${mode} ${name} && chown ${owner}:${group} ${name}",
+  exec { "fix ${name} perms":
+    command => "/bin/chmod ${mode} ${name} && /bin/chown ${owner}:${group} ${name}",
+    # command => "/usr/bin/ls ${name}",
     refreshonly => true,
   }
 }

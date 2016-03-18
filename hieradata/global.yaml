@@ -35,8 +35,15 @@ hiera::hierarchy:
 # btrfs
 profile::btrfs::admin_mountpoint: '/mnt/btrfs'
 
+# Gitolite settings
+# Note that we don't let gitolite manage the user or home directory
+# This reflects two issues:
+# - The need to setup a btrfs subvolume
+# - The puppet mount resource behavior which doesn't respect the underlying
+#   directory ownerships - changes them to root which requires a hack to
+#   work around.
 gitolite::admin_key_source: '/home/administrator/.ssh/id_rsa.pub'
-gitolite::manage_home_dir: true
+gitolite::manage_home_dir: false
 gitolite::manage_user: false
 gitolite::group_name: 'gitolite'
 gitolite::user_name: 'gitolite'

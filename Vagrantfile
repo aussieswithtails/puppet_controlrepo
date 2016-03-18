@@ -36,7 +36,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # end
   end
   config.vm.define "pagent" do |agent|
-    agent.vm.box = "UbuntuWilyServer"
+    agent.vm.box = "UbuntuTrustyServer1"
     agent.ssh.username = 'administrator'
     agent.ssh.password = '9073guss'
     # setting private network is broken as of wily due to systemd related change to interface naming.
