@@ -1,22 +1,21 @@
 
 
 class profile::git::gitolite (
-  $btrfs_admin_mountpoint = hiera('awt::btrfs::admin_mountpoint'),
   $btrfs_device = hiera('btrfs_device'), #ToDo - Currently lack of value causes failure of catalog. Instead lack of value should result in failure of this profile only!
-  $btrfs_gitolite_subvolume_id = '@gitolite',
-  $btrfs_subvolume_parent_path = $btrfs_admin_mountpoint,
-  $gitolite_server_id = 'gitolite',
-  $gitolite_mountpoint = "${hiera('awt::server_home')}/${gitolite_server_id}",
-  $gitolite_server_owner = 'gitolite',
-  $gitolite_server_group = 'gitolite',
 ){
-  $btrfs_subvolume_path = "${btrfs_subvolume_parent_path}/${btrfs_gitolite_subvolume_id}"
+  $gitolite_server_id = 'gitolite'
+  $btrfs_admin_mountpoint = hiera('awt::btrfs::admin_mountpoint')
+  $btrfs_gitolite_subvolume_id = '@gitolite'
+  $btrfs_subvolume_path = "${btrfs_admin_mountpoint}/${btrfs_gitolite_subvolume_id}"
+  $gitolite_server_owner = 'gitolite'
+  $gitolite_server_group = 'gitolite'
+  $gitolite_mountpoint = "${hiera('awt::server_home')}/${gitolite_server_id}"
+
 
   notify { 'Applying profile: profile::git::gitolite': }
   notify { "Debug: btrfs_admin_mountpoint = ${btrfs_admin_mountpoint}":}
   notify { "Debug: btrfs_device = ${btrfs_device}":}
   notify { "Debug: btrfs_gitolite_subvolume_id = ${btrfs_gitolite_subvolume_id}":}
-  notify { "Debug: btrfs_subvolume_parent_path = ${btrfs_subvolume_parent_path}":}
   notify { "Debug: gitolite_server_id = ${gitolite_server_id}":}
   notify { "Debug: gitolite_mountpoint  = ${gitolite_mountpoint}":}
   notify { "Debug: gitolite_server_owner = ${gitolite_server_owner}":}
