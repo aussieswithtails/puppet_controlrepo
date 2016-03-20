@@ -1,5 +1,3 @@
-
-
 class profile::git::gitolite (
   $btrfs_device = hiera('btrfs_device'), #ToDo - Currently lack of value causes failure of catalog. Instead lack of value should result in failure of this profile only!
 ){
