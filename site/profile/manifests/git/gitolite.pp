@@ -9,27 +9,22 @@ class profile::git::gitolite (
   $gitolite_server_group = 'gitolite'
   $gitolite_mountpoint = "${hiera('awt::server_home')}/${gitolite_server_id}"
 
-
-  notify { 'Applying profile: profile::git::gitolite': }
-  notify { "Debug: btrfs_admin_mountpoint = ${btrfs_admin_mountpoint}":}
-  notify { "Debug: btrfs_device = ${btrfs_device}":}
-  notify { "Debug: btrfs_gitolite_subvolume_id = ${btrfs_gitolite_subvolume_id}":}
-  notify { "Debug: gitolite_server_id = ${gitolite_server_id}":}
-  notify { "Debug: gitolite_mountpoint  = ${gitolite_mountpoint}":}
-  notify { "Debug: gitolite_server_owner = ${gitolite_server_owner}":}
-  notify { "Debug: gitolite_server_group = ${gitolite_server_group}":}
-  notify { "Debug: btrfs_subvolume_path = ${btrfs_subvolume_path}":}
-
   include ::gitolite
 
   user { $gitolite_server_owner:
     ensure     => present,
     home       => $gitolite_mountpoint,
     managehome => true,
-    shell      => hiera('awt::nologin_shell'),
+    shell      => '/bin/bash',
     system     => true,
   }
 
+  ssh_keygen { $gitolite_server_owner:
+    bits  => hiera('awt::ssh::key_size'),
+    home  => $gitolite_mountpoint,
+    type  => hiera('awt::ssh::key_type'),
+    require => User[$gitolite_server_owner]
+  }
 
   profile::types::file_and_mount { $btrfs_admin_mountpoint:
     file_params  => { },

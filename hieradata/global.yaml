@@ -32,6 +32,9 @@ hiera::hierarchy:
   - "tier/%{literal('%')}{tier}"
   - global
 
+awt::ssh::key_type: 'rsa'
+awt::ssh::key_size: '4096'
+
 # btrfs
 awt::btrfs::admin_mountpoint: '/mnt/btrfs'
 awt::server_home: '/srv'
@@ -44,7 +47,7 @@ awt::nologin_shell: '/usr/sbin/nologin'
 # - The puppet mount resource behavior which doesn't respect the underlying
 #   directory ownerships - changes them to root which requires a hack to
 #   work around.
-gitolite::admin_key_source: '/home/administrator/.ssh/id_rsa.pub'
+gitolite::admin_key_source: "%{hiera('gitolite::home_dir')}/.ssh/id_%{hiera('awt::ssh::key_type')}.pub"
 gitolite::manage_home_dir: false
 gitolite::manage_user: false
 gitolite::group_name: 'gitolite'

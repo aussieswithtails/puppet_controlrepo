@@ -36,9 +36,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # end
   end
   config.vm.define "pagent" do |agent|
-    agent.vm.box = "UbuntuTrustyServer1"
+    agent.vm.box = "UbuntuWilyServer1"
     agent.ssh.username = 'administrator'
-    agent.ssh.password = '9073guss'
+    # agent.ssh.password = '9073guss'
+    agent.ssh.insert_key = true
     # setting private network is broken as of wily due to systemd related change to interface naming.
     # Seehttps://github.com/mitchellh/vagrant/issues/6871
 #    agent.vm.network "private_network", ip: '192.168.99.101'
