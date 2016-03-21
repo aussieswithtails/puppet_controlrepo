@@ -7,7 +7,7 @@ class profile::git::gitolite (
   $btrfs_subvolume_path = "${btrfs_admin_mountpoint}/${btrfs_gitolite_subvolume_id}"
   $gitolite_server_owner = 'gitolite'
   $gitolite_server_group = 'gitolite'
-  $gitolite_mountpoint = "${hiera('awt::server_home')}/${gitolite_server_id}"
+  $gitolite_mountpoint = "${hiera}('awt::server_home')/${gitolite_server_id}"
 
   include ::gitolite
 
@@ -20,10 +20,10 @@ class profile::git::gitolite (
   }
 
   ssh_keygen { $gitolite_server_owner:
-    bits  => hiera('awt::ssh::key_size'),
-    home  => $gitolite_mountpoint,
-    type  => hiera('awt::ssh::key_type'),
-    require => User[$gitolite_server_owner]
+    bits    => hiera('awt::ssh::key_size'),
+    home    => $gitolite_mountpoint,
+    type    => hiera('awt::ssh::key_type'),
+    require => User[$gitolite_server_owner],
   }
 
   profile::types::file_and_mount { $btrfs_admin_mountpoint:
