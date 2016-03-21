@@ -41,12 +41,4 @@ class profile::vmhost {
     before  => Mount[$vms_mountpoint]
   }
 
-  mount { $vms_mountpoint:
-    ensure  => mounted,
-    device  => $btrfs_host_volume,
-    fstype  => 'btrfs',
-    options => "defaults,subvol=${btrfs_vms_subvolume}",
-    pass    => 2,
-    require => Subvolume[$btrfs_vms_path]
-  }
 }
