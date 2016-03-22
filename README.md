@@ -75,10 +75,10 @@ Install and configure a
 [Gitolite Server](http://gitolite.com/gitolite/index.html) as follows:
 
 * Create a BTRFS subvolume `/@gitolite`.
-* Mount the gitolite server at `/srv/gitolite` and adds a corresponding
+* Mount the gitolite server at `/srv/gitolite` and add a corresponding
     entry to `/etc/fstab`.
 * Create the `gitolite` user and group.
-* Add the system administrator ssh-key as the gitolite 
+* Add the awt::gitolite::owner ssh-key as the gitolite 
     administrative user.
     
 ###### Parameters

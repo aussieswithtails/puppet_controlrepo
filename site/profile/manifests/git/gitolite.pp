@@ -1,3 +1,5 @@
+# profile::git::gitolite
+
 class profile::git::gitolite (
   $btrfs_device = hiera('btrfs_device'), #ToDo - Currently lack of value causes failure of catalog. Instead lack of value should result in failure of this profile only!
 ){
@@ -18,13 +20,6 @@ class profile::git::gitolite (
     shell      => '/bin/bash',
     system     => true,
   }
-
-  # ssh_keygen { $gitolite_server_owner:
-  #   bits    => hiera('awt::ssh::key_size'),
-  #   home    => $gitolite_mountpoint,
-  #   type    => hiera('awt::ssh::key_type'),
-  #   require => Profile::Types::File_and_mount[$gitolite_mountpoint],
-  # }
 
   ensure_resource('profile::types::file_and_mount', $btrfs_admin_mountpoint, {
     file_params  => { },

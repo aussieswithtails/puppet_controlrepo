@@ -4,3 +4,5 @@ modules/
 .idea/
 *.iml
 doc/
+.yardoc/
+Puppetfile.lock
