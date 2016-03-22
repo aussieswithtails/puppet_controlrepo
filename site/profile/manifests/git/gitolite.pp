@@ -23,7 +23,7 @@ class profile::git::gitolite (
     bits    => hiera('awt::ssh::key_size'),
     home    => $gitolite_mountpoint,
     type    => hiera('awt::ssh::key_type'),
-    require => User[$gitolite_server_owner],
+    require => Profile::Types::File_and_mount[$gitolite_mountpoint],
   }
 
   ensure_resource('profile::types::file_and_mount', $btrfs_admin_mountpoint, {
