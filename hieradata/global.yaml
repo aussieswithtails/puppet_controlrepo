@@ -31,3 +31,30 @@ hiera::hierarchy:
   - "nodes/%{literal('%')}{trusted.certname}"
   - "tier/%{literal('%')}{tier}"
   - global
+
+awt::ssh::key_type: 'rsa'
+awt::ssh::key_size: '4096'
+
+# btrfs
+awt::btrfs::admin_mountpoint: '/mnt/btrfs'
+awt::server_home: '/srv'
+awt::nologin_shell: '/usr/sbin/nologin'
+
+# Gitolite settings
+# Note that we don't let gitolite manage the user or home directory
+# This reflects two issues:
+# - The need to setup a btrfs subvolume
+# - The puppet mount resource behavior which doesn't respect the underlying
+#   directory ownerships - changes them to root which requires a hack to
+#   work around.
+#gitolite::admin_key_source: "%{hiera('gitolite::home_dir')}/.ssh/id_%{hiera('awt::ssh::key_type')}.pub"
+#gitolite::admin_key_source: "/home/administrator/.ssh/id_rsa.pub"
+awt::user::snesbitt:
+  ssh_key_content: 'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA0fSQTmZM1YiWAYIVfS5vgrGwst9SGQMcDMheKlrar2wW7Y262JDQWgf8FCZjn4t4FG2L6z4VFNKLRg2UIwmh2uT3p9+sul0oyWrVeukYUrslZl5wrZxpuy1OgVJSeoATmB0JTzIIPu+eQDsCDNthUH+cGTBDKkhquRvmBo/jZ4CPEpqANh6wWpQJQUPIzoCiS+mBtl+0dI2BReFr/SVH9ebZ3vmc+vBZppqz7EqHdeL8psgqGkFA+YNYN0qDKSdU4mWgOkvsTDCWGkeAq4Yn8Kir0mntYE4lFcSFOflLJLgX9k3m9RVy2O4tsCujtX6fKWC/zi+J96Dtso56Xgoi/Q== snesbitt@loki'
+
+gitolite::admin_key_content: "%{hiera('awt::user::snesbitt.ssh_key_content')}"
+gitolite::manage_home_dir: false
+gitolite::manage_user: false
+gitolite::group_name: 'gitolite'
+gitolite::user_name: 'gitolite'
+gitolite::home_dir: '/srv/gitolite'

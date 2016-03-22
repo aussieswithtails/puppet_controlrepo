@@ -8,7 +8,7 @@
 #   include ::profile::vmhost
 #
 class profile::vmhost {
-  $btrfs_host_volume = hiera('btrfs_device')  #ToDo - Currently lack of value causes failure of catalog.
+  $btrfs_device = hiera('btrfs_device')  #ToDo - Currently lack of value causes failure of catalog.
                                               #Instead lack of value should result in failure of this profile only!
   $btrfs_admin_mountpoint = '/mnt/btrfs'
   $btrfs_vms_subvolume = '@vms'
@@ -18,36 +18,34 @@ class profile::vmhost {
   include ::vagrant
   include ::virtualbox
 
-  # Create a vms subvolume
-  mkdir::p { 'btrfs_admin_mount_point':
-    path    => $btrfs_admin_mountpoint,
-    before  => Mount[$btrfs_admin_mountpoint],
-  }
-
-  mount { $btrfs_admin_mountpoint:
-    ensure => mounted,
-    device => $btrfs_host_volume,
-    fstype => 'btrfs',
-    before  => Subvolume[$btrfs_subvolume_path]
-  }
+  ensure_resource('profile::types::file_and_mount', $btrfs_admin_mountpoint, {
+    file_params  => { },
+    mount_params => {
+      'atboot' => false,
+      'ensure' => mounted,
+      'device' => $btrfs_device,
+      'fstype' => 'btrfs',
+    },
+  })
 
   subvolume { $btrfs_subvolume_path: #FixMe - I don't like syntax here. Should be a parameter that specifies
     require => Btrfs[$btrfs_admin_mountpoint],
     ensure  => present,              # path to where btrfs is mounted
+    require => Profile::Types::File_and_mount[$btrfs_admin_mountpoint],
   }
 
-  # Create the vms mount point and mount the btrfs vms subvolume
-  mkdir::p { 'vms_repo':
-    path    => $vms_mountpoint,
-    before  => Mount[$vms_mountpoint]
-  }
+  ensure_resource('profile::types::file_and_mount', $vms_mountpoint, {
+    file_params  => { },
+    mount_params => {
+      'ensure'  => mounted,
+      'atboot'  => true,
+      'device'  => $btrfs_device,
+      'fstype'  => 'btrfs',
+      'options' => "defaults,subvol=${$btrfs_vms_subvolume}",
+    },
+    require     => [Subvolume[$btrfs_subvolume_path]],
+  })
 
-  mount { $vms_mountpoint:
-    ensure  => mounted,
-    device  => $btrfs_host_volume,
-    fstype  => 'btrfs',
-    options => "defaults,subvol=${btrfs_vms_subvolume}",
-    pass    => 2,
-    require => Subvolume[$btrfs_vms_path]
-  }
+
 }
+

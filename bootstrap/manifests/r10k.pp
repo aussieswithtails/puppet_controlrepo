@@ -8,7 +8,7 @@
     version => '2.1.1',
     sources => {
       'puppet' => {
-        'remote'  => 'https://github.com/snesbittsea/puppet_controlrepo.git',
+        'remote'  => 'https://github.com/aussieswithtails/puppet_controlrepo.git',
         'basedir' => "${::settings::codedir}/environments",
         'prefix'  => false,
       },
