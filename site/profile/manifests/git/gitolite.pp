@@ -7,7 +7,7 @@ class profile::git::gitolite (
   $btrfs_subvolume_path = "${btrfs_admin_mountpoint}/${btrfs_gitolite_subvolume_id}"
   $gitolite_server_owner = 'gitolite'
   $gitolite_server_group = 'gitolite'
-  $gitolite_mountpoint = "${hiera}('awt::server_home')/${gitolite_server_id}"
+  $gitolite_mountpoint = "${hiera('awt::server_home')}/${gitolite_server_id}"
 
   include ::gitolite
 
@@ -26,7 +26,7 @@ class profile::git::gitolite (
     require => User[$gitolite_server_owner],
   }
 
-  profile::types::file_and_mount { $btrfs_admin_mountpoint:
+  ensure_resource('profile::types::file_and_mount', $btrfs_admin_mountpoint, {
     file_params  => { },
     mount_params => {
       'atboot' => false,
@@ -34,7 +34,8 @@ class profile::git::gitolite (
       'device' => $btrfs_device,
       'fstype' => 'btrfs',
     },
-  }
+  })
+
 
   subvolume { $btrfs_subvolume_path: #FixMe - I don't like syntax here. Should be a parameter that specifies
     ensure  => present,              # path to where btrfs is mounted
