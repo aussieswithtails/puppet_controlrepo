@@ -49,7 +49,7 @@ awt::nologin_shell: '/usr/sbin/nologin'
 #   work around.
 #gitolite::admin_key_source: "%{hiera('gitolite::home_dir')}/.ssh/id_%{hiera('awt::ssh::key_type')}.pub"
 #gitolite::admin_key_source: "/home/administrator/.ssh/id_rsa.pub"
-gitolite::admin_key_content: 'AAAAB3NzaC1yc2EAAAADAQABAAACAQC9XBfVgdWZP/RkHn7wQ5c58oGLRfx6rMAVBJaNPIVqb838JYVZjbvhq+OJ2rz6aX8dOKjZI456R/sjdsv0Qwwui6DQ7HHUfxlmTZ2vgHUDvE/gOZxS85QcBoWPY5nZ3eh4ih1NvF5RicNursZknzPMVx8E1Cs4W9sPNACD8BGra27CGpbzAb971MiQUxk7JGBOckNXEjeZKuu/h8UkCMCLkFZiYEioHefIUAvmjGJrmoH/JvmenPP08sHnTtGkhI1i+uPPmm7Wl/CjfoeOmoos2fdxq8PS5xKfB2iGZRZpoKnrDjKiH56gAnn1WMUkxYhxomWGkGme7JWZXx6Bd/RjPme5igdWFJCks/uAy71H22dz40G1t9o6zqc9Q+hxJSCVQf0qpfc5PTK89e1zR+uoxI4R/PAQGz0K/yEXOnstHAeRH/SC6kzc657nGS+sZJITeo57/BFYxOAZeAi4hi0s2KVRSENWb093mxGS6+TFJBJNWzqlRXVbFQcTqE6ID+LL+75GLmfK+xmC7HMJMHapZM5SnsuLbvDoW2FLQTbQme69HYUJjhaL8qdWtub9q9Fto5GWbjnBbeW61BP0bv4GjuRIsqL4MkgZqHNvDjFCkaNUbpu4ipW7CnmFnnXz6Y9wxrDmbGHD6IXaxIuNRSyJHje2sV/F05yj5a//z5z4IQ=='
+gitolite::admin_key_content: 'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA0fSQTmZM1YiWAYIVfS5vgrGwst9SGQMcDMheKlrar2wW7Y262JDQWgf8FCZjn4t4FG2L6z4VFNKLRg2UIwmh2uT3p9+sul0oyWrVeukYUrslZl5wrZxpuy1OgVJSeoATmB0JTzIIPu+eQDsCDNthUH+cGTBDKkhquRvmBo/jZ4CPEpqANh6wWpQJQUPIzoCiS+mBtl+0dI2BReFr/SVH9ebZ3vmc+vBZppqz7EqHdeL8psgqGkFA+YNYN0qDKSdU4mWgOkvsTDCWGkeAq4Yn8Kir0mntYE4lFcSFOflLJLgX9k3m9RVy2O4tsCujtX6fKWC/zi+J96Dtso56Xgoi/Q== snesbitt@loki'
 gitolite::manage_home_dir: false
 gitolite::manage_user: false
 gitolite::group_name: 'gitolite'
