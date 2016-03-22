@@ -68,7 +68,6 @@ node 'puppetmaster01.samdom.aussieswithtails.fuzzbutt', 'puppetmaster01.test', '
   }
 
   include role::fuzzbuttnet_master_server
-  include role::gitolite_server
 #  include role::puppetmaster_copy
 #  include role::example
 }
