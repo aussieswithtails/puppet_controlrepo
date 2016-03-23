@@ -58,3 +58,8 @@ gitolite::manage_user: false
 gitolite::group_name: 'gitolite'
 gitolite::user_name: 'gitolite'
 gitolite::home_dir: '/srv/gitolite'
+
+
+# Nginx
+nginx::manage_repo: true
+nginx::package_source: 'nginx-mainline'

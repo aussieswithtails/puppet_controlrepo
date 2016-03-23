@@ -67,6 +67,16 @@ FORGE
       puppetlabs-vcsrepo (>= 0.1.2)
 
 GIT
+  remote: git://github.com/jfryman/puppet-nginx.git
+  ref: master
+  sha: 56e1c591bf5bfd06c34782c66953b3bc4b10fafa
+  specs:
+    jfryman-nginx (0.3.0)
+      puppetlabs-apt (< 3.0.0, >= 1.8.0)
+      puppetlabs-concat (< 3.0.0, >= 1.1.1)
+      puppetlabs-stdlib (< 5.0.0, >= 4.2.0)
+
+GIT
   remote: git://github.com/woldan/puppet-btrfs.git
   ref: master
   sha: 0ad66673eb765779c2b966f2aa878ea3f301946c
@@ -89,6 +99,7 @@ DEPENDENCIES
   flypenguin-mkdir (= 1.0.4)
   gentoo-portage (= 2.3.0)
   hunner-hiera (= 2.0.1)
+  jfryman-nginx (>= 0)
   maestrodev-ssh_keygen (= 1.3.1)
   mjanser-vagrant (= 1.1.0)
   nanliu-staging (= 1.0.3)

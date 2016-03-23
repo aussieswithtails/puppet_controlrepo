@@ -1,53 +1,61 @@
-class profile::vagrant_server {
-  # create a btrfs subvolume to host the vagrant repository and
-  # mount it at /var/www/<vagrant>
-  $btrfs_admin_mountpoint = '/mnt/btrfs'
-  $www_subvolume_id = '@www'
-  $vagrant_subvolume_id = 'vagrant'
-  $vagrant_repo_mountpoint = '/var/lib/www/vagrant'
-  $btrfs_host_volume = hiera('btrfs_device')  #ToDo - Currently lack of value causes failure of catalog.
-
-#  $btrfs_www_subvolume_path = "${btrfs_admin_mountpoint}/${www_subvolume_id}"
-#  $btrfs_vagrant_subvolume = "${btrfs_www_subvolume_path}/$vagrant_subvolume_id"
-
-
-  # FixMe - this entire process of creating and mounting a btrfs subvolume should be put in a module
-  # Create a vms subvolume
-  mkdir::p { 'btrfs_admin_mount_point':
-    path    => $btrfs_admin_mountpoint,
-  }
-
-  mount { $btrfs_admin_mountpoint:
-    ensure => mounted,
-    device => $btrfs_host_volume,
-    fstype => 'btrfs',
-    require => Mkdir::P['btrfs_admin_mount_point'],
-  }
-
-  subvolume { "${btrfs_admin_mountpoint}/${www_subvolume_id}": #FixMe - I don't like syntax here. Should be a parameter that specifies
-    ensure  => present,              # path to where btrfs is mounted
-    require => Mount[$btrfs_admin_mountpoint]
-  }
-
-  subvolume { "${btrfs_admin_mountpoint}/${www_subvolume_id}/${vagrant_subvolume_id}": #FixMe - I don't like syntax here. Should be a parameter that specifies
-    ensure   => present,              # path to where btrfs is mounted
-    require  => Subvolume["${btrfs_admin_mountpoint}/${www_subvolume_id}"]
-  }
-
-    # Create the vms mount point and mount the btrfs vms subvolume
-  mkdir::p { $vagrant_repo_mountpoint:
-    path    => $vagrant_repo_mountpoint,
-    before  => Mount[$vagrant_repo_mountpoint]
-  }
+# Class: profile::vagrant_server
 #
-  mount { $vagrant_repo_mountpoint:
-    ensure  => mounted,
-    device  => $btrfs_host_volume,
-    fstype  => 'btrfs',
-    options => "defaults,subvol=${www_subvolume_id}/${vagrant_subvolume_id}",
-    pass    => 2,
-    require => Subvolume["${btrfs_admin_mountpoint}/${www_subvolume_id}/${vagrant_subvolume_id}"],
+# This class installs, configures and sets up a system to host a Vagrant
+# server
+#
+# Sample Usage:
+#
+#   include profile::vagrant_server
+
+
+class profile::vagrant_server(
+  $btrfs_device = hiera('btrfs_device'),
+) {
+  $btrfs_admin_mountpoint = hiera('awt::btrfs::admin_mountpoint')
+  $btrfs_vagrantrepo_subvolume_id = '@vagrant'
+  $btrfs_vagrantrepo_subvolume_path = "${btrfs_admin_mountpoint}/${btrfs_vagrantrepo_subvolume_id}"
+  $vagrantrepo_mountpoint = '/srv/vagrant'
+  $vagrantrepo_owner = 'www-data'
+  $vagrantrepo_group = 'www-data'
+
+  ensure_resource('user', $vagrantrepo_owner, {
+    "ensure"     => present,
+    "home"       => '/var/www/html',
+    "managehome" => true,
+    "shell"      => '/usr/sbin/nologin',
+    "system"     => true,
+  })
+
+  ensure_resource('profile::types::file_and_mount', $btrfs_admin_mountpoint, {
+    file_params  => { },
+    mount_params => {
+      'atboot' => false,
+      'ensure' => mounted,
+      'device' => $btrfs_device,
+      'fstype' => 'btrfs',
+    },
+  })
+
+  subvolume { $btrfs_vagrantrepo_subvolume_path: #FixMe - I don't like syntax here. Should be a parameter that specifies
+    ensure  => present,              # path to where btrfs is mounted
+    require => Profile::Types::File_and_mount[$btrfs_admin_mountpoint]
   }
-#   add an nginx server
+
+  profile::types::file_and_mount { $vagrantrepo_mountpoint:
+    file_params  => {
+      'owner' => $vagrantrepo_owner,
+      'group' => $vagrantrepo_group,
+    },
+    mount_params => {
+      'ensure'  => mounted,
+      'atboot'  => true,
+      'device'  => $btrfs_device,
+      'fstype'  => btrfs,
+      'options' => "defaults,subvol=${btrfs_vagrantrepo_subvolume_id}",
+    },
+    require      => [User[$vagrantrepo_owner], Subvolume[$btrfs_vagrantrepo_subvolume_path]],
+  }
+
+  include nginx
 
 }
