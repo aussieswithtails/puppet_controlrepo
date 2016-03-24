@@ -29,7 +29,6 @@ class profile::vmhost {
   })
 
   subvolume { $btrfs_subvolume_path: #FixMe - I don't like syntax here. Should be a parameter that specifies
-    require => Btrfs[$btrfs_admin_mountpoint],
     ensure  => present,              # path to where btrfs is mounted
     require => Profile::Types::File_and_mount[$btrfs_admin_mountpoint],
   }
