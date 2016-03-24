@@ -72,3 +72,7 @@ node 'puppetmaster01.samdom.aussieswithtails.fuzzbutt', 'puppetmaster01.test', '
 #  include role::example
 }
 
+node 'zwaveserver01.samdom.aussieswithtails.fuzzbutt' {
+  include role::zwave_server
+}
+
