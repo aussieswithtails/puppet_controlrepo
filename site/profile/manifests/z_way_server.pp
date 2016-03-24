@@ -24,8 +24,7 @@ class profile::z_way_server {
       # the license agreement, and yes/no to emails.
 
 
-      set force_conservative 0  ;# set to 1 to force conservative mode even if
-              ;# script wasn't run conservatively originally
+      set force_conservative 0
       if {\$force_conservative} {
         set send_slow {1 .1}
         proc send {ignore arg} {
