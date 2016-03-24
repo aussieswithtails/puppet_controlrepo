@@ -46,6 +46,8 @@ class profile::z_way_server {
       ! Please subscribe again if you did it before 30.03.2013\r
       yes/no: "
       send -- "no\r"
+      send -- "exit\r"
+      close
       | END_OF_SCRIPT
 
   package { 'expect':
