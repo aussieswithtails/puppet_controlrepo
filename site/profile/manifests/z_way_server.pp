@@ -12,6 +12,7 @@ class profile::z_way_server {
   }
 
   $expect_script = '/tmp/install_z_way_server.exp'
+  $install_script = '/tmp/install_z_way_server.sh'
 
   $expect_content = @("END_OF_SCRIPT"/$)
       #!/usr/bin/expect -f
@@ -36,7 +37,7 @@ class profile::z_way_server {
       set timeout -1
       spawn \$env(SHELL)
       match_max 100000
-      send -- "sudo /bin/bash ${expect_script}\r"
+      send -- "sudo /bin/bash ${install_script}\r"
       expect "Do you accept Z-Wave.Me licence agreement?\r
       Please read it on Z-Wave.Me web site: http://razberry.z-wave.me/docs/ZWAYEULA.pdf\r
       yes/no: "
