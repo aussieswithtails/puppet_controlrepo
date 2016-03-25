@@ -1,6 +1,6 @@
-# profile::git::gitolite
+# profile::vcs::git_server
 
-class profile::git::gitolite (
+class profile::vcs::git_server (
   $btrfs_device = hiera('btrfs_device'), #ToDo - Currently lack of value causes failure of catalog. Instead lack of value should result in failure of this profile only!
 ){
   $gitolite_server_id = 'gitolite'
