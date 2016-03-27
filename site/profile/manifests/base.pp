@@ -1,4 +1,4 @@
-# Implements Base profile
+vgs pserver# Implements Base profile
 class profile::base {
   notify { 'profile::base':
     message => 'Module ::profile::base',

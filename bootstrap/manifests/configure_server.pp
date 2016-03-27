@@ -3,31 +3,32 @@
 #http://docs.puppetlabs.com/pe/latest/release_notes.html#filebucket-resource-no-longer-created-by-default
 #File { backup => false }
 
+class bootstrap::configure_server {
+  notify{ 'Configure an AWT Test PuppetServer': }
+  include bootstrap::common
 
-notify{'Configure an AWT Test PuppetServer':}
-include bootstrap::common
+  file { 'autosign.conf':
+    ensure  => file,
+    path    => "${settings::confdir}/autosign.conf",
+    content => file('bootstrap/autosign.conf'),
+    mode    => '0644',
+  }
 
-file {'autosign.conf':
-  ensure  => file,
-  path    => "${settings::confdir}/autosign.conf",
-  content => file('bootstrap/autosign.conf'),
-  mode    => '0644',
-}
+  service { 'puppetserver':
+    ensure  => running,
+  }
 
-service {'puppetserver':
-  ensure  => running,
-}
+  # FixMe duplicated in configure server
+  file { 'environment_link':
+    ensure => link,
+    path   => "${settings::codedir}/environments/development",
+    target => '/vagrant',
+  }
 
-# FixMe duplicated in configure server
-file { 'environment_link':
-  ensure => link,
-  path   => "${settings::codedir}/environments/development",
-  target => '/vagrant',
-}
-
-host { 'pagent':
-  ensure       => present,
-  name         => 'pagent.test',
-  host_aliases => ['pagent',],
-  ip           => '192.168.99.101',
+  host { 'pagent':
+    ensure       => present,
+    name         => 'pagent.test',
+    host_aliases => ['pagent',],
+    ip           => '192.168.99.102',
+  }
 }
