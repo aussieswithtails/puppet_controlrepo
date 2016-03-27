@@ -8,3 +8,13 @@ btrfs_device: '/dev/sda1'
 
 awt::user::snesbitt:
   ssh_key_content: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCfCCQ97BUsBeimWSv32llDkhpkNLBLRuPFREJ5DCzQxYTK41zbzASsCOAS4mfVIeWRybQxk1Z3odB4VVMpGDtfdRFs5033nTW957MtSREfix43O0BSlJSgnmtTFzibWb/9JNaow2sZ9KkxYro4/rUD5K7hJiiO1Ly1ndX9/cMZTjQP4WPyrqYcxe53npiYlnh0AKzNDkk5mgI8F950m1DBAbnt3NQs3cYzK/0qCLk7uj/dr5FXwT6mLLtxqYgZr684sa3en0pB9LA8j1+ezfRg12bVHgmtk4i5DdTxajnhxncmY81lhbLr5gqzFKqjSafr7QJZcYPgA8Guy8iE1V8J snesbitt@pagent'
+
+#awt::puppet::servers:
+#  id: 'pserver'
+awt::puppet::server:
+    id: 'pserver'
+    fqdn: 'pserver.test'
+    box: 'pserver-ubuntu-wily-x64'
+    ram: '4096'
+    ip: '192.168.99.102'
+    ip_interface: 'enp0s8'

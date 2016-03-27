@@ -35,6 +35,8 @@ hiera::hierarchy:
 awt::ssh::key_type: 'rsa'
 awt::ssh::key_size: '4096'
 
+awt::puppet::server: 'oberon.samdom.aussieswithtails.fuzzbutt'
+
 # btrfs
 awt::btrfs::admin_mountpoint: '/mnt/btrfs'
 awt::server_home: '/srv'

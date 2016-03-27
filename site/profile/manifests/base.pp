@@ -4,7 +4,8 @@ class profile::base {
     message => 'Module ::profile::base',
   }
 
-  include ::profile::base::packages
+  include ::profile::base::apps
+  include ::profile::base::configuration
   include ::profile::base::params
   include ::profile::base::users_and_groups
 

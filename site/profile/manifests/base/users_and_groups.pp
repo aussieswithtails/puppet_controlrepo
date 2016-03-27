@@ -1,7 +1,7 @@
 # Class: profile::base::users_and_groups
 #
-# This class installs, configures and sets up packages
-# that should be available on all systems
+# This class installs, configures and sets awt users
+# and groups that should exist on all nodes
 #
 # Sample Usage:
 #

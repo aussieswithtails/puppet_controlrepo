@@ -7,11 +7,6 @@ class bootstrap::configure_agent {
   notify{ 'Configuring an AWT Test Puppet Agent': }
   include bootstrap::common
 
-  file { '/etc/udev/rules/10-network.rules':
-    ensure  => present,
-    content => 'SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="08:00:27:5c:10:ac", NAME="eth1"'
-  }
-
   # FixMe duplicated in configure server
   file { 'environment_link':
     ensure => link,
