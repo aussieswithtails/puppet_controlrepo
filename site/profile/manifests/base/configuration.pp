@@ -58,31 +58,33 @@ class profile::base::configuration {
 
   # Configure auth.conf
   case $::facts['tier'] {
-    'development': {
-      $ip_interface = "ipaddress_${hiera('awt::puppet::server.ip_interface')}"
 
-      notice( "shit: ${::facts[$ip_interface]}")
+    'development': {
+      $test_server = hiera('awt::puppet::server')
+      $test_agent = hiera('awt::puppet::agent')
+      notice("Shit: ${test_agent['ip']}")
       file { 'environment_link':
         ensure => link,
         path   => "${settings::codedir}/environments/development",
         target => '/vagrant',
       }
+
       file { 'autosign.conf':
         ensure  => file,
         path    => "${settings::confdir}/autosign.conf",
         content => '*',
         mode    => '0644',
       }
-      # host { $::facts['hostname']:
-      #   ensure       => present,
-      #   host_aliases => [$::facts['fqdn'],],
-      #   ip           => $::facts[$ip_interface],
-      # }
-      # host { 'puppet_server':
-      #   ensure       => present,
-      #   host_aliases => [hiera('awt::puppet::server.name'), hiera('awt::puppet::server.fqdn')],
-      #   ip           => hiera('awt::puppet::server.ip'),
-      # }
+      host { 'pagent':
+        ensure       => present,
+        host_aliases => [$test_agent['id'], $test_agent['fqdn']],
+        ip           => $test_agent['ip'],
+      }
+      host { 'puppet_server':
+        ensure       => present,
+        host_aliases => [$test_server['id'], $test_server['fqdn']],
+        ip           => $test_server['ip'],
+      }
     }
     default: {}
   }

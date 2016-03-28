@@ -16,5 +16,13 @@ awt::puppet::server:
     fqdn: 'pserver.test'
     box: 'pserver-ubuntu-wily-x64'
     ram: '4096'
+    ip: '192.168.99.101'
+    ip_interface: 'enp0s8'
+
+awt::puppet::agent:
+    id: 'pagent'
+    fqdn: 'pagent.test'
+    box: 'pagent-ubuntu-wily-x64'
+    ram: '1028'
     ip: '192.168.99.102'
     ip_interface: 'enp0s8'
