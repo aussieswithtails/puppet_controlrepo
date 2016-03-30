@@ -34,3 +34,5 @@ postgresql::server::ip_mask_allow_all_users: '192.168.99.0/24'
 postgresql::server::manage_pg_hba_conf: true
 postgresql::server::manage_pg_ident_conf: true
 postgresql::server::port: '5432'
+
+puppetdb::master::config::db_server: 'pserver.test'

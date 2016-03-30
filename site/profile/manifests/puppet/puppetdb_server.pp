@@ -8,7 +8,7 @@
 #   include ::profile::puppet::puppetdb_server
 
 class profile::puppet::puppetdb_server {
+  include ::puppetdb::master::config
   include ::profile::db_server::postgresql
   include ::puppetdb::server
-  # include ::puppetdb::master::config
 }
