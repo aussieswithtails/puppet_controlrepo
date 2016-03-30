@@ -8,7 +8,6 @@
 #   include profile::db_server::postgresql
 class profile::db_server::postgresql {
   #ToDo: Add in btrfs subvolume creation
-
   include ::postgresql::server
 
   postgresql::server::pg_hba_rule { 'postgresql_global_access':

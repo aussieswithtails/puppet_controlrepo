@@ -9,6 +9,6 @@
 
 class profile::puppet::puppetdb_server {
   include ::profile::db_server::postgresql
-  include ::puppetdb
-  include ::puppetdb::master::config
+  include ::puppetdb::server
+  # include ::puppetdb::master::config
 }
