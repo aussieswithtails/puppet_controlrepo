@@ -71,7 +71,7 @@ node 'puppetmaster01.samdom.aussieswithtails.fuzzbutt', 'oberon.samdom.aussieswi
     path    => "${::settings::confdir}/puppet.conf"
   }
 
-#  include role::fuzzbuttnet_master_server
+ include role::fuzzbuttnet_master_server
 #  include role::puppetmaster_copy
 #  include role::example
 }
