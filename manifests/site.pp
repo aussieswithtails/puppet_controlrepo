@@ -40,7 +40,11 @@ node default {
   include profile::base
 }
 
-node 'puppetmaster01.samdom.aussieswithtails.fuzzbutt', 'puppetmaster01.test', 'oberon.samdom.aussieswithtails.fuzzbutt' {
+node 'pserver.test' {
+  include role::puppet_test_server
+}
+
+node 'puppetmaster01.samdom.aussieswithtails.fuzzbutt', 'oberon.samdom.aussieswithtails.fuzzbutt' {
 
 
   ini_setting { 'server':
