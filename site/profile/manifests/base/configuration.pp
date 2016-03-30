@@ -62,7 +62,7 @@ class profile::base::configuration {
     'development': {
       $test_server = hiera('awt::puppet::server')
       $test_agent = hiera('awt::puppet::agent')
-      notice("Shit: ${test_agent['ip']}")
+
       file { 'environment_link':
         ensure => link,
         path   => "${settings::codedir}/environments/development",
@@ -77,12 +77,12 @@ class profile::base::configuration {
       }
       host { 'pagent':
         ensure       => present,
-        host_aliases => [$test_agent['id'], $test_agent['fqdn']],
+        host_aliases => [$test_agent['fqdn'],],
         ip           => $test_agent['ip'],
       }
-      host { 'puppet_server':
+      host { 'pserver':
         ensure       => present,
-        host_aliases => [$test_server['id'], $test_server['fqdn']],
+        host_aliases => [$test_server['fqdn'],],
         ip           => $test_server['ip'],
       }
     }

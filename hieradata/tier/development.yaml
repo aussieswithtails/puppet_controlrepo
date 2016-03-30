@@ -11,6 +11,8 @@ awt::user::snesbitt:
 
 #awt::puppet::servers:
 #  id: 'pserver'
+awt:network:domain_name: 'test'
+
 awt::puppet::server:
     id: 'pserver'
     fqdn: 'pserver.test'
@@ -26,3 +28,9 @@ awt::puppet::agent:
     ram: '1028'
     ip: '192.168.99.102'
     ip_interface: 'enp0s8'
+
+
+postgresql::server::ip_mask_allow_all_users: '192.168.99.0/24'
+postgresql::server::manage_pg_hba_conf: true
+postgresql::server::manage_pg_ident_conf: true
+postgresql::server::port: '5432'

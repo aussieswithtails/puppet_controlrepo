@@ -69,3 +69,11 @@ gitolite::home_dir: '/srv/gitolite'
 # Nginx
 nginx::manage_repo: true
 nginx::package_source: 'nginx-mainline'
+
+postgresql::globals::manage_package_repo: true
+postgresql::globals::version: '9.4'
+postgresql::server::ip_mask_allow_all_users: '192.168.0.0/26'
+postgresql::server::listen_addresses: '*'
+puppetdb::master::config::db_server: 'pserver.test'
+puppetdb::master::config:manage_config: true
+puppetdb::database::postgresql::manage_server: false
