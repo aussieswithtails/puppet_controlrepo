@@ -15,18 +15,18 @@ class profile::base::configuration {
   include ::profile::base::params
 
   # Add custom facts
-  mkdir::p { 'facts.d':
-    path    => $profile::base::params::custom_facts_dir,
-  }
-
-  file { 'environment_fact':
-    ensure  => file,
-    group   => 'root',
-    owner   => 'root',
-    path    => "${profile::base::params::custom_facts_dir}/environment.yaml",
-    source  => "puppet:///modules/${module_name}/environment.yaml",
-    mode    => '0644',
-  }
+  # mkdir::p { 'facts.d':
+  #   path    => $profile::base::params::custom_facts_dir,
+  # }
+  #
+  # file { 'environment_fact':
+  #   ensure  => file,
+  #   group   => 'root',
+  #   owner   => 'root',
+  #   path    => "${profile::base::params::custom_facts_dir}/environment.yaml",
+  #   source  => "puppet:///modules/${module_name}/environment.yaml",
+  #   mode    => '0644',
+  # }
 
   # Configure puppet.conf
   ini_setting {'puppet_certname':
