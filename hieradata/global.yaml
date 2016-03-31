@@ -78,10 +78,10 @@ postgresql::server::ip_mask_allow_all_users: '192.168.0.0/26'
 postgresql::server::listen_addresses: '*'
 
 # PuppetDB
-puppetdb::database_name: 'puppetdb'
-puppetdb::database_password: 'teABoNlARTErYGmATo'
-puppetdb::database_username: 'puppetdb'
-puppetdb::service_status: 'running'
+puppetdb::server::database_name: 'puppetdb'
+puppetdb::server::database_password: 'UrAIgMaNALCHOBECia'
+puppetdb::server::database_username: 'puppetdb'
+puppetdb::server::service_status: 'running'
 
 puppetdb::database::postgresql::manage_server: false
 
