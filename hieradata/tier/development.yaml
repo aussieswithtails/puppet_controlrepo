@@ -29,12 +29,13 @@ awt::puppet::agent:
     ip: '192.168.99.102'
     ip_interface: 'enp0s8'
 
-
+# Postgresql
 postgresql::server::ip_mask_allow_all_users: '192.168.99.0/24'
 postgresql::server::manage_pg_hba_conf: true
 postgresql::server::manage_pg_ident_conf: true
 postgresql::server::port: '5432'
 
+# PuppetDB
 puppetdb::master::config::db_server: 'pserver.test'
 puppetdb::server::database_host: 'pserver.test'
 puppetdb::server::listen_address: '127.0.1.1'

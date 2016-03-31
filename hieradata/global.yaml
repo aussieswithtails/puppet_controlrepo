@@ -70,16 +70,18 @@ gitolite::home_dir: '/srv/gitolite'
 nginx::manage_repo: true
 nginx::package_source: 'nginx-mainline'
 
+# Postgresql
 postgresql::globals::manage_package_repo: true
 postgresql::globals::version: '9.4'
+
 postgresql::server::ip_mask_allow_all_users: '192.168.0.0/26'
 postgresql::server::listen_addresses: '*'
 
 # PuppetDB
 puppetdb::database_name: 'puppetdb'
-puppetdb::database_password: 'teABoNlARTErYGmATo' #FixMe (currently default)
+puppetdb::database_password: 'teABoNlARTErYGmATo'
 puppetdb::database_username: 'puppetdb'
-puppetdb::service_status: 'running'puppetdb::master::config:manage_config: true
+puppetdb::service_status: 'running'
 
 puppetdb::database::postgresql::manage_server: false
 
