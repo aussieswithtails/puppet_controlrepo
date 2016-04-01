@@ -19,4 +19,6 @@ class profile::puppet::puppetdb_server {
     type        => 'host',
     user        => 'puppetdb',
   }
+
+  #ToDo - needs to be a mechanism  to ensure that any change to the puppetdb password is accompanied by a corresponding postgres change...
 }
