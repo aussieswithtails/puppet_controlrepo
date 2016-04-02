@@ -37,11 +37,15 @@ node default {
   # This is where you can declare classes for all nodes.
   # Example:
   #   class { 'my_class': }
-  include profile::base
+  include ::profile::base
 }
 
 node 'dserver.test' {
-  include role::puppet_test_server
+  include ::role::puppet_test_server
+}
+
+node 'loki.samdom.aussieswithtails.fuzzbutt' {
+  include ::role::development_workstation
 }
 
 node 'puppetmaster01.samdom.aussieswithtails.fuzzbutt', 'oberon.samdom.aussieswithtails.fuzzbutt' {
@@ -50,7 +54,7 @@ node 'puppetmaster01.samdom.aussieswithtails.fuzzbutt', 'oberon.samdom.aussieswi
     section => 'master',
     setting => 'server',
     value   => $facts['fqdn'],
-    path    => "${::settings::confdir}/puppet.conf"
+    path    => "${::settings::confdir}/puppet.conf",
   }
 
   ini_setting { 'certname':
@@ -58,7 +62,7 @@ node 'puppetmaster01.samdom.aussieswithtails.fuzzbutt', 'oberon.samdom.aussieswi
     section => 'master',
     setting => 'certname',
     value   => $facts['fqdn'],
-    path    => "${::settings::confdir}/puppet.conf"
+    path    => "${::settings::confdir}/puppet.conf",
   }
 
   ini_setting { 'agent_server':
@@ -66,15 +70,15 @@ node 'puppetmaster01.samdom.aussieswithtails.fuzzbutt', 'oberon.samdom.aussieswi
     section => 'agent',
     setting => 'server',
     value   => $facts['fqdn'],
-    path    => "${::settings::confdir}/puppet.conf"
+    path    => "${::settings::confdir}/puppet.conf",
   }
 
- include role::fuzzbuttnet_master_server
+ include ::role::fuzzbuttnet_master_server
 #  include role::puppetmaster_copy
 #  include role::example
 }
 
 node 'zwaveserver01.samdom.aussieswithtails.fuzzbutt' {
-  include role::zwave_server
+  include ::role::zwave_server
 }
 
