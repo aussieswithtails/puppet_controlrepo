@@ -75,12 +75,12 @@ class profile::base::configuration {
         content => '*',
         mode    => '0644',
       }
-      host { 'pagent':
+      host { 'dpagent':
         ensure       => present,
         host_aliases => [$test_agent['fqdn'],],
         ip           => $test_agent['ip'],
       }
-      host { 'pserver':
+      host { 'dpserver':
         ensure       => present,
         host_aliases => [$test_server['fqdn'],],
         ip           => $test_server['ip'],
