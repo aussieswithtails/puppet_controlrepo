@@ -10,6 +10,11 @@
 class profile::base::users_and_groups {
   include ::profile::base::params
 
+  group { $profile::base::params::admin_group:
+    ensure => present,
+    system => true
+  }
+
   user { $profile::base::params::admin_user:
     ensure         => present,
     comment        => 'Standard Administrative User',
@@ -19,12 +24,14 @@ class profile::base::users_and_groups {
     managehome     => true,
     purge_ssh_keys => true,
     shell          => '/bin/zsh',
-    require        => Package['zsh'],
+    require        => [Package['zsh'], Group[$profile::base::params::admin_group]]
   }
 
-  group { $profile::base::params::admin_group:
-    ensure => present,
-    system => true,
-    before => User[$profile::base::params::admin_user],
-  }
+  $users_with_admin_access = hiera('awt::authorized_keys::administrator')
+  $registered_ssh_keys = lookup("awt::registered_ssh_keys")
+
+  $valid_ssh_keys = $registered_ssh_keys.filter |$items| { member($users_with_admin_access, $items[0]) }
+  create_resources(ssh_authorized_key, $valid_ssh_keys, {'user' => $profile::base::params::admin_user, 'ensure' => present})
+
+
 }

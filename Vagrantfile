@@ -5,8 +5,7 @@
 VAGRANTFILE_API_VERSION = "2"
 
 require 'yaml'
-# test_servers = YAML.load_file(File.join(File.dirname(__FILE__), 'bootstrap/test_servers.yml'))
- test_servers = YAML.load_file(File.join(File.dirname(__FILE__), 'bootstrap/test_servers.yml'))
+ test_servers = YAML.load_file(File.join(File.dirname(__FILE__), 'bootstrap/dev_servers.yml'))
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   test_servers.each do |servers|

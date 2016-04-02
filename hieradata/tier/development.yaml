@@ -6,16 +6,19 @@ sudo::config_file_replace: true
 
 btrfs_device: '/dev/sda1'
 
-awt::user::snesbitt:
-  ssh_key_content: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCfCCQ97BUsBeimWSv32llDkhpkNLBLRuPFREJ5DCzQxYTK41zbzASsCOAS4mfVIeWRybQxk1Z3odB4VVMpGDtfdRFs5033nTW957MtSREfix43O0BSlJSgnmtTFzibWb/9JNaow2sZ9KkxYro4/rUD5K7hJiiO1Ly1ndX9/cMZTjQP4WPyrqYcxe53npiYlnh0AKzNDkk5mgI8F950m1DBAbnt3NQs3cYzK/0qCLk7uj/dr5FXwT6mLLtxqYgZr684sa3en0pB9LA8j1+ezfRg12bVHgmtk4i5DdTxajnhxncmY81lhbLr5gqzFKqjSafr7QJZcYPgA8Guy8iE1V8J snesbitt@pagent'
+awt::authorized_keys::administrator:
+  - vagrant
 
-#awt::puppet::servers:
-#  id: 'pserver'
+awt::registered_ssh_keys:
+  vagrant:
+    type: 'rsa'
+    key: 'AAAAB3NzaC1yc2EAAAADAQABAAABAQDG9sPl9Gx4XaL5hMJ3WU1uOqzHUL9Yh9ENuLnshnGZMMVt7JvUsLFCCkHpmMXw+wjU3Wat/pZZO5TUZ4K6O6cF6TC4Mufr9X0cIxbTYZwwcMUw8Ir9nqBvAMzi66isPxnC84EUUmwUnZRb4a5tHOlaNcTmtCbV8xJHdxM0zDhYtMuJTf48I0ZX1zZHaNP8Hxi72m/75Kq+HMmnMC4w4vYlMs78gsUYrOKuo3VwH1UhxDOIsAb+N+3qlypRWbN27ZB3JpIzcn4lY6pTq1Fk+YKhuR1SLUdhHd1qhIsSAoIPc9MI0YXl+UOITqFVEBEpjBPJ+je+fEvP9Equ7C/UyT5x'
+
 awt:network:domain_name: 'test'
 
 awt::puppet::server:
     id: 'pserver'
-    fqdn: 'pserver.test'
+    fqdn: 'dpserver.test'
     box: 'pserver-ubuntu-wily-x64'
     ram: '4096'
     ip: '192.168.99.101'
@@ -23,11 +26,14 @@ awt::puppet::server:
 
 awt::puppet::agent:
     id: 'pagent'
-    fqdn: 'pagent.test'
+    fqdn: 'dagent.test'
     box: 'pagent-ubuntu-wily-x64'
     ram: '1028'
     ip: '192.168.99.102'
     ip_interface: 'enp0s8'
+
+
+
 
 # Postgresql
 postgresql::server::ip_mask_allow_all_users: '192.168.99.0/24'
@@ -36,6 +42,6 @@ postgresql::server::manage_pg_ident_conf: true
 postgresql::server::port: '5432'
 
 # PuppetDB
-puppetdb::master::config::db_server: 'pserver.test'
-puppetdb::server::database_host: 'pserver.test'
+puppetdb::master::config::db_server: 'dpserver.test'
+puppetdb::server::database_host: 'dpserver.test'
 puppetdb::server::listen_address: '127.0.1.1'

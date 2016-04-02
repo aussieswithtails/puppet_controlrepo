@@ -16,7 +16,7 @@ class bootstrap::configure_agent {
 
   host { 'pserver':
     ensure       => present,
-    name         => 'pserver.test',
+    name         => 'dserver.test',
     ip           => '192.168.99.101',
     host_aliases => 'pserver',
   }

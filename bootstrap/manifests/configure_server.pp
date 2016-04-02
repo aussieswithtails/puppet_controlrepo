@@ -27,8 +27,8 @@ class bootstrap::configure_server {
 
   host { 'pagent':
     ensure       => present,
-    name         => 'pagent.test',
-    host_aliases => ['pagent',],
+    name         => 'dagent.test',
+    host_aliases => ['dpagent',],
     ip           => '192.168.99.102',
   }
 }
