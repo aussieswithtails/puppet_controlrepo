@@ -1,11 +1,11 @@
 ---
 - name: 'pagent'
-  hostname: 'dpagent.test'
+  hostname: 'pagent.test'
   box: 'pagent-ubuntu-wily-x64'
   ram: '1048'
   ip_addr: '192.168.99.102'
 - name: 'pserver'
-  hostname: 'dpserver.test'
+  hostname: 'pserver.test'
   box: 'pserver-ubuntu-wily-x64'
   ram: '4096'
   ip_addr: '192.168.99.101'

@@ -5,7 +5,7 @@
 
 class bootstrap::configure_server {
   notify{ 'Configure an AWT Test PuppetServer': }
-  include bootstrap::common
+  include ::bootstrap::common
 
   file { 'autosign.conf':
     ensure  => file,
@@ -27,8 +27,8 @@ class bootstrap::configure_server {
 
   host { 'pagent':
     ensure       => present,
-    name         => 'dagent.test',
-    host_aliases => ['dpagent',],
+    name         => 'pagent.test',
+    host_aliases => ['pagent',],
     ip           => '192.168.99.102',
   }
 }

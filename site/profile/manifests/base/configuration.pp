@@ -30,21 +30,21 @@ class profile::base::configuration {
 
   # Configure puppet.conf
   ini_setting {'puppet_certname':
-    ensure    => present,
-    section   => 'main',
-    path      => '/etc/puppetlabs/puppet/puppet.conf',
-    setting   => 'certname',
-    value     => $::facts['fqdn'],
-    notify    => Service[$profile::base::params::puppet_agent_service],
+    ensure  => present,
+    section => 'main',
+    path    => '/etc/puppetlabs/puppet/puppet.conf',
+    setting => 'certname',
+    value   => $::facts['fqdn'],
+    notify  => Service[$profile::base::params::puppet_agent_service],
   }
 
   ini_setting {'puppet_server':
-    ensure    => present,
-    section   => 'master',
-    path      => '/etc/puppetlabs/puppet/puppet.conf',
-    setting   => 'server',
-    value     => hiera('awt::puppet::server.fqdn'),
-    notify    => Service[$profile::base::params::puppet_agent_service],
+    ensure  => present,
+    section => 'master',
+    path    => '/etc/puppetlabs/puppet/puppet.conf',
+    setting => 'server',
+    value   => hiera('awt::puppet::server.fqdn'),
+    notify  => Service[$profile::base::params::puppet_agent_service],
   }
 
   ini_setting {'hiera_config':
@@ -75,12 +75,14 @@ class profile::base::configuration {
         content => '*',
         mode    => '0644',
       }
-      host { 'dpagent':
+
+      host { 'pagent':
         ensure       => present,
         host_aliases => [$test_agent['fqdn'],],
         ip           => $test_agent['ip'],
       }
-      host { 'dpserver':
+
+      host { 'pserver':
         ensure       => present,
         host_aliases => [$test_server['fqdn'],],
         ip           => $test_server['ip'],
