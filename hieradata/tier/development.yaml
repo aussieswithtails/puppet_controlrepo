@@ -12,13 +12,13 @@ awt::authorized_keys::administrator:
 awt::registered_ssh_keys:
   vagrant:
     type: 'rsa'
-    key: 'AAAAB3NzaC1yc2EAAAADAQABAAABAQDG9sPl9Gx4XaL5hMJ3WU1uOqzHUL9Yh9ENuLnshnGZMMVt7JvUsLFCCkHpmMXw+wjU3Wat/pZZO5TUZ4K6O6cF6TC4Mufr9X0cIxbTYZwwcMUw8Ir9nqBvAMzi66isPxnC84EUUmwUnZRb4a5tHOlaNcTmtCbV8xJHdxM0zDhYtMuJTf48I0ZX1zZHaNP8Hxi72m/75Kq+HMmnMC4w4vYlMs78gsUYrOKuo3VwH1UhxDOIsAb+N+3qlypRWbN27ZB3JpIzcn4lY6pTq1Fk+YKhuR1SLUdhHd1qhIsSAoIPc9MI0YXl+UOITqFVEBEpjBPJ+je+fEvP9Equ7C/UyT5x'
+    key: 'AAAAB3NzaC1yc2EAAAADAQABAAABAQCfhF2A8Dpt1YjJoLYQDgXAFOXB+Gde18u/QPPmvriaiUTiqykDW7gHdAZ6nmV1RbiimgVjg3Tnv73wntZxDaWFTGHSSPaQgLf/Xia2MJ/VDdt7JNptGjXY0ukr2QFfXU/P3y77JSXiRgbqdTIvJj5ZszlBCtzrisJxGb7BUXbkInqjDBc0fpgjm/4af3/s/N/6DAvccsKaba0Yx3ErsDDiPLUP/Mr/eGp4C5n1kIyG+BZQM7iw58H1rqjE1A2XOJ9YqwyD7KtW6ClUO6MHK4GuqTkMiGrr5Ido66USDqWupHvEEvMfM3BloeCGMhRtaT6POhxVPj1jQF7hWLV3sw6T'
 
 awt:network:domain_name: 'test'
 
 awt::puppet::server:
     id: 'pserver'
-    fqdn: 'dpserver.test'
+    fqdn: 'pserver.test'
     box: 'pserver-ubuntu-wily-x64'
     ram: '4096'
     ip: '192.168.99.101'
@@ -26,7 +26,7 @@ awt::puppet::server:
 
 awt::puppet::agent:
     id: 'pagent'
-    fqdn: 'dagent.test'
+    fqdn: 'agent.test'
     box: 'pagent-ubuntu-wily-x64'
     ram: '1028'
     ip: '192.168.99.102'
@@ -42,6 +42,6 @@ postgresql::server::manage_pg_ident_conf: true
 postgresql::server::port: '5432'
 
 # PuppetDB
-puppetdb::master::config::db_server: 'dpserver.test'
-puppetdb::server::database_host: 'dpserver.test'
+puppetdb::master::config::db_server: 'pserver.test'
+puppetdb::server::database_host: 'pserver.test'
 puppetdb::server::listen_address: '127.0.1.1'
