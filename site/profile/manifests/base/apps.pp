@@ -27,13 +27,6 @@ class profile::base::apps {
     require => Package[$profile::base::params::puppet_agent_service]
   }
 
-  include ::sudo
-  include ::sudo::configs
-  sudo::conf { $profile::base::params::admin_group:
-    content  => "%${profile::base::params::admin_group} ALL=(ALL) NOPASSWD: ALL",
-    priority => 10,
-  }
-
   package { 'zsh':
     ensure => present,
     before => User[$profile::base::params::admin_user],

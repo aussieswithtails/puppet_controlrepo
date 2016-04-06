@@ -9,6 +9,8 @@
 
 class profile::base::users_and_groups {
   include ::profile::base::params
+  include ::sudo
+  include ::sudo::configs
 
   group { $profile::base::params::admin_group:
     ensure => present,
@@ -25,6 +27,11 @@ class profile::base::users_and_groups {
     purge_ssh_keys => true,
     shell          => '/bin/zsh',
     require        => [Package['zsh'], Group[$profile::base::params::admin_group]]
+  }
+
+  sudo::conf { $profile::base::params::admin_group:
+    content  => "%${profile::base::params::admin_group} ALL=(ALL) NOPASSWD: ALL",
+    priority => 10,
   }
 
   $users_with_admin_access = hiera('awt::authorized_keys::administrator')
