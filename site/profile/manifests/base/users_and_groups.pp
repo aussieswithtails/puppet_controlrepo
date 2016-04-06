@@ -34,8 +34,8 @@ class profile::base::users_and_groups {
     priority => 10,
   }
 
-  $users_with_admin_access = hiera('awt::authorized_keys::administrator')
-  $registered_ssh_keys = lookup("awt::registered_ssh_keys")
+  $users_with_admin_access = hiera('awt::ssh::authorized_keys::administrator')
+  $registered_ssh_keys = lookup("awt::ssh::registered_ssh_keys")
 
   $valid_ssh_keys = $registered_ssh_keys.filter |$items| { member($users_with_admin_access, $items[0]) }
   create_resources(ssh_authorized_key, $valid_ssh_keys, {'user' => $profile::base::params::admin_user, 'ensure' => present})

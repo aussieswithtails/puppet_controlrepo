@@ -6,10 +6,10 @@ sudo::config_file_replace: true
 
 btrfs_device: '/dev/sda1'
 
-awt::authorized_keys::administrator:
+awt::ssh::authorized_keys::administrator:
   - vagrant
 
-awt::registered_ssh_keys:
+awt::ssh::registered_ssh_keys:
   vagrant:
     type: 'rsa'
     key: 'AAAAB3NzaC1yc2EAAAADAQABAAABAQCfhF2A8Dpt1YjJoLYQDgXAFOXB+Gde18u/QPPmvriaiUTiqykDW7gHdAZ6nmV1RbiimgVjg3Tnv73wntZxDaWFTGHSSPaQgLf/Xia2MJ/VDdt7JNptGjXY0ukr2QFfXU/P3y77JSXiRgbqdTIvJj5ZszlBCtzrisJxGb7BUXbkInqjDBc0fpgjm/4af3/s/N/6DAvccsKaba0Yx3ErsDDiPLUP/Mr/eGp4C5n1kIyG+BZQM7iw58H1rqjE1A2XOJ9YqwyD7KtW6ClUO6MHK4GuqTkMiGrr5Ido66USDqWupHvEEvMfM3BloeCGMhRtaT6POhxVPj1jQF7hWLV3sw6T'
