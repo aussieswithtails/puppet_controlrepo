@@ -13,7 +13,7 @@ class profile::puppet::puppetdb_server {
   include ::puppetdb::server
 
   postgresql::server::pg_hba_rule { 'puppetdb access':
-    address     => "127.0.0.1",
+    address     => "127.0.0.1/26",
     auth_method => 'md5',
     database    => 'puppetdb',
     type        => 'host',
