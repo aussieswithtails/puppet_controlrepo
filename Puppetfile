@@ -10,10 +10,11 @@ mod 'echoes/gitolite', '0.4.0'
 mod 'flypenguin/mkdir', '1.0.4'
 mod 'gentoo/portage', '2.3.0'
 mod 'hunner/hiera', '2.0.1'
-#mod 'jfryman/nginx' '0.3.0'
+mod 'jfryman/nginx', '0.3.0'
 mod 'maestrodev/ssh_keygen', '1.3.1'
 mod 'maestrodev/wget', '1.7.3'
 mod 'nanliu/staging', '1.0.3'
+mod 'puppetlabs/apache', '1.9.0'
 mod 'puppetlabs/apt', '2.2.1'
 mod 'puppetlabs/concat', '1.2.5'
 mod 'puppetlabs/firewall', '1.7.2'
@@ -32,10 +33,8 @@ mod 'saz/sudo', '3.1.0'
 mod 'stahnma/epel', '1.2.2'
 mod 'mjanser/vagrant', '1.1.0'
 mod 'zack/r10k', '3.2.0'
-#
+
 # Modules from Github
-mod 'jfryman-nginx',
-	:git => 'git://github.com/jfryman/puppet-nginx.git'
 mod "puppet-subvolume",
 	:git => 'git://github.com/woldan/puppet-subvolume.git'
 mod "puppet-btrfs",

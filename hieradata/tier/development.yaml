@@ -33,7 +33,7 @@ awt::puppet::agent:
     ip_interface: 'enp0s8'
 
 
-
+nginx::config::nginx_error_log_severity: 'debug'
 
 # Postgresql
 postgresql::server::ip_mask_allow_all_users: '192.168.99.0/24'
