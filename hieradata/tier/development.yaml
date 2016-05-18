@@ -33,7 +33,19 @@ awt::puppet::agent:
     ip_interface: 'enp0s8'
 
 
-nginx::config::nginx_error_log_severity: 'debug'
+nginx::config::nginx_error_log_severity: 'info'
+nginx::nginx_vhosts:
+  "www.%{::domain}":
+    ensure: present
+    error_log: "%{log_dir}/www.%{::domain}.log debug"
+    www_root: /var/www/html
+    try_files:
+      - '$uri'
+      - '$uri/'
+      - '@proxy'
+    location_cfg_append:
+      rewrite_log: 'on'
+
 
 # Postgresql
 postgresql::server::ip_mask_allow_all_users: '192.168.99.0/24'

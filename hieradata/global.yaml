@@ -88,41 +88,21 @@ nginx::config::proxy_send_timeout: '15'
 nginx::manage_repo: true
 nginx::package_source: 'nginx-mainline'
 nginx::nginx_vhosts:
-  'oberon.samdom.aussieswithtails.fuzzbutt':
+  "www.%{::domain}":
     ensure: present
-#    proxy_connect_timeout: '15'
-#    client_max_body_size: '10m'
+    error_log: "%{log_dir}/www.%{::domain}.log error"
     www_root: /var/www/html
     try_files:
       - '$uri'
       - '$uri/'
       - '@proxy'
     location_cfg_append:
-      rewrite_log: 'on'
+      rewrite_log: 'off'
 
 nginx::nginx_locations:
   '@proxy':
     proxy: 'http://127.0.0.1:8080'
-    vhost: oberon.samdom.aussieswithtails.fuzzbutt
-
-#nginx::nginx_locations:
-#  'default':
-#    location: '/'
-##    location: '~ "^/static/[0-9a-fA-F]{8}\/(.*)$"'
-#    www_root: /var/www/html
-
-
-
-#nginx::nginx_vhosts:
-#  'www.puppetlabs.com':
-#    www_root: '/var/www/www.puppetlabs.com'
-#  'rack.puppetlabs.com':
-#    proxy: 'http://puppet_rack_app'
-#nginx::nginx_locations:
-#  'static':
-#    location: '~ "^/static/[0-9a-fA-F]{8}\/(.*)$"'
-#    vhost: www.puppetlabs.com
-#    www_root: /var/www/html
+    vhost: "www.%{::domain}"
 
 
 # Postgresql
