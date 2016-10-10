@@ -3,7 +3,7 @@
   - yaml
 :hierarchy:
   - "clientcert/%{::clientcert}"
-  - "tier/%{::facts.tier}"
+  - "tier/%{::parameters.tier}"
   - global
 
 :yaml:
