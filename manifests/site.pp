@@ -48,35 +48,35 @@ node 'loki.samdom.aussieswithtails.fuzzbutt' {
   include ::role::development_workstation
 }
 
-node 'puppetmaster01.samdom.aussieswithtails.fuzzbutt', 'oberon.samdom.aussieswithtails.fuzzbutt' {
-  ini_setting { 'server':
-    ensure  => present,
-    section => 'master',
-    setting => 'server',
-    value   => $facts['fqdn'],
-    path    => "${::settings::confdir}/puppet.conf",
-  }
-
-  ini_setting { 'certname':
-    ensure  => present,
-    section => 'master',
-    setting => 'certname',
-    value   => $facts['fqdn'],
-    path    => "${::settings::confdir}/puppet.conf",
-  }
-
-  ini_setting { 'agent_server':
-    ensure  => present,
-    section => 'agent',
-    setting => 'server',
-    value   => $facts['fqdn'],
-    path    => "${::settings::confdir}/puppet.conf",
-  }
-
- include ::role::fuzzbuttnet_master_server
-#  include role::puppetmaster_copy
-#  include role::example
-}
+# node 'puppetmaster01.samdom.aussieswithtails.fuzzbutt', 'oberon.samdom.aussieswithtails.fuzzbutt' {
+#   ini_setting { 'server':
+#     ensure  => present,
+#     section => 'master',
+#     setting => 'server',
+#     value   => $facts['fqdn'],
+#     path    => "${::settings::confdir}/puppet.conf",
+#   }
+#
+#   ini_setting { 'certname':
+#     ensure  => present,
+#     section => 'master',
+#     setting => 'certname',
+#     value   => $facts['fqdn'],
+#     path    => "${::settings::confdir}/puppet.conf",
+#   }
+#
+#   ini_setting { 'agent_server':
+#     ensure  => present,
+#     section => 'agent',
+#     setting => 'server',
+#     value   => $facts['fqdn'],
+#     path    => "${::settings::confdir}/puppet.conf",
+#   }
+#
+#  include ::role::fuzzbuttnet_master_server
+# #  include role::puppetmaster_copy
+# #  include role::example
+# }
 
 node 'zwaveserver01.samdom.aussieswithtails.fuzzbutt' {
   include ::role::zwave_server
