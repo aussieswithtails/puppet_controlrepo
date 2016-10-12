@@ -10,5 +10,5 @@
 class profile::base::params {
   $admin_user = 'administrator'
   $admin_group = 'admin'
-  $puppet_agent_service = 'puppet-agent'
+  $puppet_agent_service = 'puppet'
 }
