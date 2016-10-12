@@ -4,7 +4,7 @@ class profile::base {
   }
 
   include ::profile::base::apps
-  # include ::profile::base::configuration
-  # include ::profile::base::params
-  # include ::profile::base::users_and_groups
+  include ::profile::base::configuration
+  include ::profile::base::params
+  include ::profile::base::users_and_groups
 }
