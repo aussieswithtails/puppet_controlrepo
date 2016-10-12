@@ -10,6 +10,5 @@
 class profile::base::params {
   $admin_user = 'administrator'
   $admin_group = 'admin'
-  $custom_facts_dir = '/etc/facter/facts.d'
   $puppet_agent_service = 'puppet-agent'
 }
