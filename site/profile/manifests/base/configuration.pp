@@ -57,7 +57,7 @@ class profile::base::configuration {
   }
 
   # Configure auth.conf
-  case $::parameters['tier'] {
+  case $::tier {
 
     'development': {
       $test_server = hiera('awt::puppet::server')
